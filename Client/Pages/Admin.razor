@@ -1,0 +1,89 @@
+@page "/admin"
+@using Blog.Shared
+@using System.Net.Http.Json
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Blog.Client.Services
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthStateProvider
+@inject ISnackbar Snackbar
+@attribute [Authorize]
+
+<MudPaper Elevation="3" Class="pa-6">
+    <MudText Typo="Typo.h3" GutterBottom="true">Blog Posts</MudText>
+
+    @if (posts == null)
+    {
+        <MudText>Loading...</MudText>
+    }
+    else if (!posts.Any())
+    {
+        <MudText>No posts found.</MudText>
+    }
+    else
+    {
+        <MudTable Items="posts" Hover="true" Striped="true" Elevation="2" Class="mb-6">
+            <HeaderContent>
+                <MudTh>Title</MudTh>
+                <MudTh>Content</MudTh>
+                <MudTh>Created At</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Title">@context.Title</MudTd>
+                <MudTd DataLabel="Content">@context.Content</MudTd>
+                <MudTd DataLabel="Created At">@context.CreatedAt.ToString("d")</MudTd>
+            </RowTemplate>
+        </MudTable>
+    }
+
+    <MudText Typo="Typo.h5" GutterBottom="true">Create a New Post</MudText>
+    <MudForm @ref="form" @bind-IsValid="@success">
+        <MudTextField Label="Title" @bind-Value="newPost.Title" Required="true" Class="mb-4" Variant="Variant.Outlined" />
+        <MudTextField Label="Content" @bind-Value="newPost.Content" Required="true" Lines="5" Class="mb-4" Variant="Variant.Outlined" />
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!success)" OnClick="CreatePost" FullWidth="true">Create Post</MudButton>
+    </MudForm>
+</MudPaper>
+
+@code {
+    private Post[]? posts;
+    private Post newPost = new();
+    private MudForm? form;
+    private bool success;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadPosts();
+    }
+
+    private async Task LoadPosts()
+    {
+        posts = await Http.GetFromJsonAsync<Post[]>("api/posts");
+        if (posts != null)
+        {
+            Snackbar.Add("Posts loaded successfully.", Severity.Success);
+        }
+    }
+
+    private async Task CreatePost()
+    {
+        if (success)
+        {
+            var response = await Http.PostAsJsonAsync("api/posts", newPost);
+            if (response.IsSuccessStatusCode)
+            {
+                newPost = new Post();
+                if (form != null)
+                {
+                    form.ResetValidation();
+                }
+                await LoadPosts();
+                Snackbar.Add("Post created successfully!", Severity.Success);
+            }
+            else
+            {
+                Snackbar.Add("Failed to create post.", Severity.Error);
+            }
+        }
+    }
+}

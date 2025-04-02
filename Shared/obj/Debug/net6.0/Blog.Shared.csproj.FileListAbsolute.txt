@@ -1,0 +1,11 @@
+C:\workspace\Blog\Shared\bin\Debug\net6.0\Blog.Shared.deps.json
+C:\workspace\Blog\Shared\bin\Debug\net6.0\Blog.Shared.dll
+C:\workspace\Blog\Shared\bin\Debug\net6.0\Blog.Shared.pdb
+C:\workspace\Blog\Shared\obj\Debug\net6.0\Blog.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\workspace\Blog\Shared\obj\Debug\net6.0\Blog.Shared.AssemblyInfoInputs.cache
+C:\workspace\Blog\Shared\obj\Debug\net6.0\Blog.Shared.AssemblyInfo.cs
+C:\workspace\Blog\Shared\obj\Debug\net6.0\Blog.Shared.csproj.CoreCompileInputs.cache
+C:\workspace\Blog\Shared\obj\Debug\net6.0\Blog.Shared.dll
+C:\workspace\Blog\Shared\obj\Debug\net6.0\refint\Blog.Shared.dll
+C:\workspace\Blog\Shared\obj\Debug\net6.0\Blog.Shared.pdb
+C:\workspace\Blog\Shared\obj\Debug\net6.0\ref\Blog.Shared.dll

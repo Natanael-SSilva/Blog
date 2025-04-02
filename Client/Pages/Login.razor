@@ -1,0 +1,60 @@
+@page "/login"
+@using System.Net.Http.Json
+@using Microsoft.AspNetCore.Components.Authorization
+@using Blog.Client.Services
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthStateProvider
+@inject ISnackbar Snackbar
+
+<MudGrid Justify="Justify.Center">
+    <MudItem xs="12" sm="6" md="4">
+        <MudPaper Elevation="3" Class="pa-6">
+            <MudText Typo="Typo.h3" GutterBottom="true" Align="Align.Center">Login</MudText>
+            <MudForm @ref="form" @bind-IsValid="@success">
+                <MudTextField Label="Username" @bind-Value="model.Username" Required="true" Class="mb-4" Variant="Variant.Outlined" />
+                <MudTextField Label="Password" @bind-Value="model.Password" Required="true" InputType="InputType.Password" Class="mb-4" Variant="Variant.Outlined" />
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!success)" OnClick="LoginUser" FullWidth="true">Login</MudButton>
+            </MudForm>
+            <MudText Class="mt-4" Align="Align.Center">Don't have an account? <MudLink Href="/register">Register here</MudLink></MudText>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+@code {
+    private LoginModel model = new();
+    private MudForm? form;
+    private bool success;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        if (authState.User?.Identity?.IsAuthenticated == true)
+        {
+            Navigation.NavigateTo("/admin");
+        }
+    }
+
+    private async Task LoginUser()
+    {
+        if (success)
+        {
+            var response = await Http.PostAsJsonAsync("api/auth/login", model);
+            if (response.IsSuccessStatusCode)
+            {
+                ((CustomAuthStateProvider)AuthStateProvider).NotifyUserAuthentication(model.Username);
+                Navigation.NavigateTo("/admin");
+            }
+            else
+            {
+                Snackbar.Add("Invalid username or password.", Severity.Error);
+            }
+        }
+    }
+
+    public class LoginModel
+    {
+        public string Username { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+    }
+}
