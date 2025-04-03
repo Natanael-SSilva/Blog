@@ -12,5 +12,6 @@ namespace Blog.Server.Data
         }
 
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Contact> Contacts {get; set; }
     }
 }

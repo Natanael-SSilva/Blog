@@ -1,16 +1,18 @@
 ﻿@inherits LayoutComponentBase
 @using Microsoft.AspNetCore.Components.Authorization
 @using Blog.Client.Services
+@using MudBlazor
 @inject AuthenticationStateProvider AuthStateProvider
 @inject NavigationManager Navigation
 
 <MudLayout>
     <MudAppBar Elevation="1">
-        <MudText Typo="Typo.h5" Class="ml-3">Blog</MudText>
-        <MudNavMenu Class="ml-6" Style="display: flex; gap: 20px;">
+        <MudText Typo="Typo.h5" Class="ml-3">Minha Landing Page</MudText>
+        <MudSpacer />
+        <MudNavMenu Class="nav-menu-center">
             <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
-            <MudNavLink Href="admin" Icon="@Icons.Material.Filled.AdminPanelSettings">Admin</MudNavLink>
-            <MudNavLink Href="fetchdata" Icon="@Icons.Material.Filled.List">Fetch Data</MudNavLink>
+            <MudNavLink Href="login">Sobre</MudNavLink>
+            <MudNavLink Href="contato">Contato</MudNavLink>
         </MudNavMenu>
         <MudSpacer />
         <AuthorizeView>
@@ -18,7 +20,7 @@
                 <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="Logout">Logout</MudButton>
             </Authorized>
             <NotAuthorized>
-                <MudButton Variant="Variant.Text" Color="Color.Inherit" Href="/login">Login</MudButton>
+                <MudButton Variant="Variant.Text" Color="Color.Primary" Href="/login">Login</MudButton>
             </NotAuthorized>
         </AuthorizeView>
     </MudAppBar>
