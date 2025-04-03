@@ -6,13 +6,14 @@
 @inject NavigationManager Navigation
 
 <MudLayout>
-    <MudAppBar Elevation="1">
-        <MudText Typo="Typo.h5" Class="ml-3">Minha Landing Page</MudText>
+    <MudAppBar Elevation="1" Fixed="true">
+        <MudImage Width="200" Height="64" Src="/images/logo.png" Alt="Logo" Class="logo"/>
         <MudSpacer />
-        <MudNavMenu Class="nav-menu-center">
-            <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
-            <MudNavLink Href="login">Sobre</MudNavLink>
-            <MudNavLink Href="contato">Contato</MudNavLink>
+        <MudNavMenu Class="nav-menu-center gap-4">
+            <MudNavLink Href="#home" Class="d-flex justify-center align-center px-3 py-2">Home</MudNavLink>
+            <MudNavLink Href="#sobre" Class="d-flex justify-center align-center px-3 py-2">Sobre</MudNavLink>
+            <MudNavLink Href="#contato" Class="d-flex justify-center align-center px-3 py-2">Contato</MudNavLink>
+            <MudNavLink Href="admin" Class="d-flex justify-center align-center px-3 py-2">Blog</MudNavLink>
         </MudNavMenu>
         <MudSpacer />
         <AuthorizeView>
@@ -20,7 +21,7 @@
                 <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="Logout">Logout</MudButton>
             </Authorized>
             <NotAuthorized>
-                <MudButton Variant="Variant.Text" Color="Color.Primary" Href="/login">Login</MudButton>
+                <MudButton Variant="Variant.Text" Color="Color.Inherit" Href="/login">Login</MudButton>
             </NotAuthorized>
         </AuthorizeView>
     </MudAppBar>
@@ -29,6 +30,9 @@
             @Body
         </MudContainer>
     </MudMainContent>
+    <MudScrollToTop VisibleCssClass="scroll-to-top-visible" HiddenCssClass="scroll-to-top-hidden">
+        <MudFab Color="Color.Primary" Icon="@Icons.Material.Filled.ArrowUpward" />
+    </MudScrollToTop>
 </MudLayout>
 
 @code {

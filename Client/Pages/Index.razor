@@ -1,10 +1,24 @@
 ﻿@page "/"
 
-<MudPaper Elevation="3" Class="pa-6">
-    <MudText Typo="Typo.h3" GutterBottom="true" Align="Align.Center">Welcome to the Blog!</MudText>
-    <MudText Align="Align.Center">Please use the "Admin" link in the navigation menu to manage posts.</MudText>
-</MudPaper>
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-4">
+    <!-- Seção Home -->
+    <div id="home" class="section">
+        <MudImage Src="/images/image.png" Alt="Principal" Elevation="25" Class="rounded-lg ma-4"/>
+    </div>
 
-<Contato />
-@code {
-}
+    <!-- Seção Sobre -->
+    <div id="sobre" class="section">
+        <MudText Typo="Typo.h3" GutterBottom="true" Align="Align.Center" Color="Color.Primary">Sobre</MudText>
+        <MudPaper Elevation="3" Class="pa-6 mb-6">
+            <MudText>Esta é a seção "Sobre" do meu blog. Aqui você pode encontrar mais informações sobre o projeto.</MudText>
+        </MudPaper>
+    </div>
+
+    <!-- Seção Contato -->
+    <div id="contato" class="section">
+        <MudText Typo="Typo.h3" GutterBottom="true" Align="Align.Center" Color="Color.Primary">Contato</MudText>
+        <MudPaper Elevation="3" Class="pa-6 mb-6">
+            <MudText>Entre em contato comigo pelo e-mail: <MudLink Href="mailto:contato@meublog.com">contato@meublog.com</MudLink></MudText>
+        </MudPaper>
+    </div>
+</MudContainer>

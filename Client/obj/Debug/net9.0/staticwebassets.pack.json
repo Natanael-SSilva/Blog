@@ -65,6 +65,14 @@
       "PackagePath": "staticwebassets\\icon-192.png"
     },
     {
+      "Id": "C:\\workspace\\Blog\\Client\\wwwroot\\images\\image.png",
+      "PackagePath": "staticwebassets\\images\\image.png"
+    },
+    {
+      "Id": "C:\\workspace\\Blog\\Client\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
       "Id": "C:\\workspace\\Blog\\Client\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
