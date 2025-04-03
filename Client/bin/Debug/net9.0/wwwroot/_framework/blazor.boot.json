@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "Blog.Client",
   "resources": {
-    "hash": "sha256-pDGw9bWFMrXe5g8HIgAeosntYzQ0T+D5WaHTlzqbDd4=",
+    "hash": "sha256-Po2Spr4+3re38RYVYEU+JkWZ+FWg2eJtg2ZKLzr+EdY=",
     "fingerprinting": {
       "Microsoft.AspNetCore.Authorization.da83xzpz5r.wasm": "Microsoft.AspNetCore.Authorization.wasm",
       "Microsoft.AspNetCore.Components.vmzb2angnn.wasm": "Microsoft.AspNetCore.Components.wasm",
@@ -210,10 +210,10 @@
       "icudt_CJK.tjcz0u77k5.dat": "icudt_CJK.dat",
       "icudt_EFIGS.tptq2av103.dat": "icudt_EFIGS.dat",
       "icudt_no_CJK.lfu7j35m59.dat": "icudt_no_CJK.dat",
-      "Blog.Shared.8q6oqt464a.wasm": "Blog.Shared.wasm",
-      "Blog.Shared.mfkdmy5h6h.pdb": "Blog.Shared.pdb",
-      "Blog.Client.n7su1x39f2.wasm": "Blog.Client.wasm",
-      "Blog.Client.lfkn151oed.pdb": "Blog.Client.pdb"
+      "Blog.Shared.bfmd87s2uk.wasm": "Blog.Shared.wasm",
+      "Blog.Shared.z4d4qvo3mp.pdb": "Blog.Shared.pdb",
+      "Blog.Client.yze8ac9dq6.wasm": "Blog.Client.wasm",
+      "Blog.Client.n5ys49a00q.pdb": "Blog.Client.pdb"
     },
     "jsModuleNative": {
       "dotnet.native.1p93gcv9fh.js": "sha256-1UPiprzN3JhPftx3be7XEMaYlUN+chRF41CuttiWVtQ="
@@ -432,12 +432,12 @@
       "WindowsBase.ag32297siy.wasm": "sha256-BgyZxTgdU9rIYlNC9ZMiMjnvBAJSL0eQH8Y87o1M+q4=",
       "mscorlib.vt9pwshhot.wasm": "sha256-/aFxOaPc1iTNlJw0z4/RGEMD0nzl4qVE3SF4wMsLgp0=",
       "netstandard.or41gtprh3.wasm": "sha256-nD1KqAI5YYz+YohqHaZ5EmXi7Eq9Uy9sUknnI8sj1AM=",
-      "Blog.Shared.8q6oqt464a.wasm": "sha256-EOZdSGL6TX4AwU6leTpgVtT8ymv4a6JUqv4mnFdfYgM=",
-      "Blog.Client.n7su1x39f2.wasm": "sha256-reBsh8tdwYLz28DMm4dYzKGp07UvjKd/hE2Bm8b2+xI="
+      "Blog.Shared.bfmd87s2uk.wasm": "sha256-x3aBWLD6wCoXM/sEnmeKVlvesmdictgtj0iOGhN0VgE=",
+      "Blog.Client.yze8ac9dq6.wasm": "sha256-EjgnYp2yLiqGjJ/7Xn2ygvKTyLW11i7k1mcoZVJ4des="
     },
     "pdb": {
-      "Blog.Shared.mfkdmy5h6h.pdb": "sha256-stbO1+UReKoCqR0vu6Gdwn/SJjej3eWOuk6v0GirEJ4=",
-      "Blog.Client.lfkn151oed.pdb": "sha256-Maxm58NF95Qg9biBZXurA6LW4n0NX7g3gJ7U+B81uH0="
+      "Blog.Shared.z4d4qvo3mp.pdb": "sha256-g5H1SwHx1itrJvvjViNZsSZNXEpm4NOvrYQ6r18OryI=",
+      "Blog.Client.n5ys49a00q.pdb": "sha256-64NpiyP+U3xOLlE6It7ZGhuBhkCHAtqPNEO3u81VC2M="
     }
   },
   "cacheBootResources": true,

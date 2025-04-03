@@ -1,9 +1,5 @@
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\blazor.boot.json
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\blazor.webassembly.js
-C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Blog.Client.lfkn151oed.pdb
-C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Blog.Client.n7su1x39f2.wasm
-C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Blog.Shared.mfkdmy5h6h.pdb
-C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Blog.Shared.8q6oqt464a.wasm
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\dotnet.js
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\dotnet.js.map
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\dotnet.native.1p93gcv9fh.js
@@ -265,7 +261,6 @@ C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Microsoft.Extension
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Microsoft.VisualBasic.Core.790ssxljcz.wasm.gz
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\System.Xml.Linq.qe9nkopg6h.wasm.gz
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\System.Xml.ReaderWriter.7tqo9y1j7t.wasm.gz
-C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Blog.Client.n7su1x39f2.wasm.gz
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\System.Runtime.Intrinsics.gi0f477zy4.wasm.gz
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\System.Security.Cryptography.X509Certificates.m2ilqf86hj.wasm.gz
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\System.IO.IsolatedStorage.z0ha6lo11a.wasm.gz
@@ -316,7 +311,6 @@ C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\System.Net.HttpList
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\System.IO.ujr9p4dm3m.wasm.gz
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Forms.qji3ksdopo.wasm.gz
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\blazor.webassembly.js.gz
-C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Blog.Shared.8q6oqt464a.wasm.gz
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\System.Reflection.Primitives.5os0vainak.wasm.gz
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Microsoft.CSharp.qzjvm9hz38.wasm.gz
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\System.Diagnostics.StackTrace.ailofr3xg4.wasm.gz
@@ -327,10 +321,8 @@ C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\System.Runtime.Inte
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\System.ComponentModel.EventBasedAsync.6j6cjcru2p.wasm.gz
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Authorization.boi5khnd47.wasm.gz
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\System.IO.Compression.FileSystem.8a6edcjpz8.wasm.gz
-C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Blog.Shared.mfkdmy5h6h.pdb.gz
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\System.Net.Primitives.rog0rqelo4.wasm.gz
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\System.Runtime.Serialization.Xml.u3xtkxm1k9.wasm.gz
-C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Blog.Client.lfkn151oed.pdb.gz
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\System.Xml.XDocument.b3qpy0ywdq.wasm.gz
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\icudt_no_CJK.lfu7j35m59.dat.gz
 C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Microsoft.Extensions.Configuration.Json.d1nka2rlr8.wasm.gz
@@ -853,7 +845,6 @@ C:\workspace\Blog\Client\obj\Debug\net9.0\webcil\System.Private.CoreLib.wasm
 C:\workspace\Blog\Client\obj\Debug\net9.0\webcil\Blog.Shared.wasm
 C:\workspace\Blog\Client\obj\Debug\net9.0\webcil\Blog.Client.wasm
 C:\workspace\Blog\Client\obj\Debug\net9.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
-C:\workspace\Blog\Client\obj\Debug\net9.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
 C:\workspace\Blog\Client\obj\Debug\net9.0\scopedcss\bundle\Blog.Client.styles.css
 C:\workspace\Blog\Client\obj\Debug\net9.0\scopedcss\projectbundle\Blog.Client.bundle.scp.css
 C:\workspace\Blog\Client\obj\Debug\net9.0\blazor.build.boot-extension.json
@@ -861,7 +852,6 @@ C:\workspace\Blog\Client\obj\Debug\net9.0\blazor.boot.json
 C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\tzxjg6is5z-u34o0xbo4m.gz
 C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\0wz98yz2xy-gtd3sm4n1q.gz
 C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\f32kn295nz-gcvjxldlff.gz
-C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\w2r2bkvkru-h7l1k8czml.gz
 C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\351jfwrld3-bpk8xqwxhs.gz
 C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\ehteudnpu5-8inm30yfxf.gz
 C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\sp5v0s5q5h-cmapd0fi15.gz
@@ -871,8 +861,6 @@ C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\xo9v6gnc9x-8h4oiah9s0.gz
 C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\io9qldowml-61n19gt1b8.gz
 C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\36cj4sv4ac-ebjrt5isr2.gz
 C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\jhi6dejb2j-md9yvkcqlf.gz
-C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\gt6vihtv03-kl760xcge6.gz
-C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\mv2uiheb8t-kl760xcge6.gz
 C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\twmjs4r15d-da83xzpz5r.gz
 C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\gouoqsmr5n-vmzb2angnn.gz
 C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\l49qref4j1-boi5khnd47.gz
@@ -1082,11 +1070,6 @@ C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\xw263ghcge-nib9cvonux.gz
 C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\ayon4p8lya-tjcz0u77k5.gz
 C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\08jw7etk9a-tptq2av103.gz
 C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\ls4a6eewue-lfu7j35m59.gz
-C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\jhwcyfnu1m-8q6oqt464a.gz
-C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\ldq1gj7bq8-mfkdmy5h6h.gz
-C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\a4k9psbak0-n7su1x39f2.gz
-C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\lk895xaru2-lfkn151oed.gz
-C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\unzxkikdc7-89e8niwweu.gz
 C:\workspace\Blog\Client\obj\Debug\net9.0\staticwebassets.build.json
 C:\workspace\Blog\Client\obj\Debug\net9.0\staticwebassets.development.json
 C:\workspace\Blog\Client\obj\Debug\net9.0\staticwebassets.build.endpoints.json
@@ -1101,3 +1084,19 @@ C:\workspace\Blog\Client\obj\Debug\net9.0\Blog.Client.dll
 C:\workspace\Blog\Client\obj\Debug\net9.0\refint\Blog.Client.dll
 C:\workspace\Blog\Client\obj\Debug\net9.0\Blog.Client.pdb
 C:\workspace\Blog\Client\obj\Debug\net9.0\ref\Blog.Client.dll
+C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Blog.Client.n5ys49a00q.pdb
+C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Blog.Client.yze8ac9dq6.wasm
+C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Blog.Shared.z4d4qvo3mp.pdb
+C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Blog.Shared.bfmd87s2uk.wasm
+C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Blog.Client.yze8ac9dq6.wasm.gz
+C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Blog.Shared.bfmd87s2uk.wasm.gz
+C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Blog.Shared.z4d4qvo3mp.pdb.gz
+C:\workspace\Blog\Client\bin\Debug\net9.0\wwwroot\_framework\Blog.Client.n5ys49a00q.pdb.gz
+C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\gt6vihtv03-uluur26e36.gz
+C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\mv2uiheb8t-uluur26e36.gz
+C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\jhwcyfnu1m-bfmd87s2uk.gz
+C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\ldq1gj7bq8-z4d4qvo3mp.gz
+C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\a4k9psbak0-yze8ac9dq6.gz
+C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\lk895xaru2-n5ys49a00q.gz
+C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\unzxkikdc7-p8zt7dpc4y.gz
+C:\workspace\Blog\Client\obj\Debug\net9.0\compressed\w2r2bkvkru-y1htfotqiw.gz

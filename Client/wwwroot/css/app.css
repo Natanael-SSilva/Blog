@@ -1,11 +1,5 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-}
-
 /* Estilos gerais */
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -129,6 +123,7 @@ a, .btn-link {
     flex-direction: column;
     justify-content: center;
     scroll-margin-top: 64px;
+    width: 100% !important;
 }
 
 /* Estilos para o botão "Voltar ao topo" */
@@ -148,10 +143,13 @@ a, .btn-link {
 
 /* Estilos para a imagem */
 .hero-image {
-    width: 100%;
     max-width: 600px;
     height: auto;
     margin: 0 auto 24px auto;
     display: block;
     border-radius: 8px;
+}
+
+.rounded-lg ma-4 {
+    width: 100% !important;
 }
