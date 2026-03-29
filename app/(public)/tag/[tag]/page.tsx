@@ -1,3 +1,5 @@
+export const revalidate = 600
+
 import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 import { Post } from '@/types'

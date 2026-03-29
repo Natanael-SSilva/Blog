@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   description: process.env.NEXT_PUBLIC_SITE_DESCRIPTION,
 }
 
+// Home revalida a cada 5 minutos
+// Posts novos aparecem sem precisar de redeploy
+export const revalidate = 300
+
 const PER_PAGE = 10
 
 async function getPosts(page: number = 1) {
@@ -37,7 +41,6 @@ async function getFeaturedPost(): Promise<Post | null> {
     .order('created_at', { ascending: false })
     .limit(1)
     .single()
-
   return (data as Post) || null
 }
 
@@ -55,10 +58,8 @@ export default async function HomePage({ searchParams }: HomeProps) {
 
   return (
     <div>
-      {/* Post em destaque */}
       {featuredPost && page === 1 && <FeaturedPost post={featuredPost} />}
 
-      {/* Divisor ornamental */}
       {featuredPost && page === 1 && (
         <div className="ornament-divider" style={{ marginBottom: '2rem' }}>
           <span
@@ -74,7 +75,6 @@ export default async function HomePage({ searchParams }: HomeProps) {
         </div>
       )}
 
-      {/* Lista de posts */}
       {posts.length > 0 ? (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           {posts.map((post, index) => (
@@ -96,7 +96,6 @@ export default async function HomePage({ searchParams }: HomeProps) {
         </div>
       )}
 
-      {/* Paginação */}
       {totalPages > 1 && (
         <nav
           style={{

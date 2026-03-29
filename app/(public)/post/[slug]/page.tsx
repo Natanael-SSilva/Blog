@@ -8,8 +8,13 @@ import MoodIndicator from '@/components/post/MoodIndicator'
 import NewsletterForm from '@/components/ui/NewsletterForm'
 import PostNav from '@/components/post/PostNav'
 import PostTags from '@/components/post/PostTags'
+import PostSchema from '@/components/post/PostSchema'
 import { formatDate, getReadingTime } from '@/lib/utils'
 import { Calendar, Clock } from 'lucide-react'
+
+// Revalida a página a cada 10 minutos
+// Se você publicar um post novo, ele aparece em até 10 min sem precisar de redeploy
+export const revalidate = 600
 
 interface PostPageProps {
   params: Promise<{ slug: string }>
@@ -78,9 +83,14 @@ export default async function PostPage({ params }: PostPageProps) {
 
   const { prev, next } = await getAdjacentPosts(post.id, post.created_at)
   const readingTime = getReadingTime(post.content)
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'Meu Blog'
 
   return (
     <article>
+      {/* Schema.org — invisível, lido pelo Google */}
+      <PostSchema post={post} siteUrl={siteUrl} siteName={siteName} />
+
       {post.cover_image && (
         <div
           style={{
