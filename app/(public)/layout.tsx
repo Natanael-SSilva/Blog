@@ -10,36 +10,22 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
       <Header />
 
       <div
-        style={{
-          maxWidth: 'var(--page-max)',
-          margin: '0 auto',
-          width: '100%',
-          padding: '2rem 1.5rem',
-          display: 'flex',
-          gap: '2.5rem',
-          alignItems: 'flex-start',
-          flex: 1,
-        }}
+        className="public-container"
+        style={{ maxWidth: 'var(--page-max)', margin: '0 auto', width: '100%', flex: 1 }}
       >
-        <main style={{ flex: 1, minWidth: 0 }}>{children}</main>
-
-        <div className="sidebar-wrapper">
-          <Sidebar />
+        <div className="public-grid">
+          <main style={{ flex: 1, minWidth: 0 }}>{children}</main>
+          <div className="sidebar-wrapper">
+            <Sidebar />
+          </div>
         </div>
       </div>
 
       <Footer />
 
-      {/* Toast de feedback da newsletter — Suspense necessário por usar useSearchParams */}
       <Suspense fallback={null}>
         <NewsletterToast />
       </Suspense>
-
-      <style>{`
-        @media (max-width: 900px) {
-          .sidebar-wrapper { display: none; }
-        }
-      `}</style>
     </div>
   )
 }

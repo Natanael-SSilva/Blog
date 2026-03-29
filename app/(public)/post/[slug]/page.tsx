@@ -93,12 +93,10 @@ export default async function PostPage({ params }: PostPageProps) {
 
       {post.cover_image && (
         <div
+          className="post-cover"
           style={{
             position: 'relative',
-            height: '360px',
-            borderRadius: 'var(--radius-lg)',
             overflow: 'hidden',
-            marginBottom: '2.5rem',
             border: '1px solid var(--border)',
           }}
         >
@@ -135,19 +133,7 @@ export default async function PostPage({ params }: PostPageProps) {
           ✦ Publicação
         </div>
 
-        <h1
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
-            fontWeight: 700,
-            color: 'var(--text)',
-            lineHeight: 1.2,
-            marginBottom: '1.25rem',
-            letterSpacing: '0.01em',
-          }}
-        >
-          {post.title}
-        </h1>
+        <h1 className="post-title">{post.title}</h1>
 
         <div
           style={{

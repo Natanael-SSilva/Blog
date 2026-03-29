@@ -30,12 +30,10 @@ export default function PostCard({ post, index = 0 }: PostCardProps) {
       }}
       whileHover={{
         borderColor: 'var(--emerald)',
-        boxShadow:
-          '0 0 0 1px var(--emerald), 0 8px 32px rgba(0,0,0,0.4), 0 0 24px rgba(45,106,79,0.12)',
+        boxShadow: '0 0 0 1px var(--emerald), 0 8px 32px rgba(0,0,0,0.4)',
         y: -2,
       }}
     >
-      {/* Linha decorativa no topo */}
       <div
         style={{
           height: '2px',
@@ -45,22 +43,10 @@ export default function PostCard({ post, index = 0 }: PostCardProps) {
         }}
       />
 
-      {/* Imagem de capa */}
       {post.cover_image && (
         <Link href={`/post/${post.slug}`} style={{ display: 'block', overflow: 'hidden' }}>
-          <div style={{ position: 'relative', height: '200px' }}>
-            <Image
-              src={post.cover_image}
-              alt={post.title}
-              fill
-              style={{ objectFit: 'cover', transition: 'transform 0.5s ease' }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.03)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)'
-              }}
-            />
+          <div className="post-card-image" style={{ position: 'relative' }}>
+            <Image src={post.cover_image} alt={post.title} fill style={{ objectFit: 'cover' }} />
             <div
               style={{
                 position: 'absolute',
@@ -72,14 +58,13 @@ export default function PostCard({ post, index = 0 }: PostCardProps) {
         </Link>
       )}
 
-      <div style={{ padding: '1.5rem' }}>
-        {/* Meta — data e tempo de leitura */}
+      <div className="post-card-body">
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '1rem',
-            marginBottom: '0.75rem',
+            gap: '0.75rem',
+            marginBottom: '0.625rem',
             flexWrap: 'wrap',
           }}
         >
@@ -87,47 +72,44 @@ export default function PostCard({ post, index = 0 }: PostCardProps) {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.35rem',
+              gap: '0.3rem',
               fontFamily: 'var(--font-ui)',
-              fontSize: '0.72rem',
+              fontSize: '0.7rem',
               color: 'var(--text-faint)',
-              letterSpacing: '0.05em',
             }}
           >
-            <Calendar size={11} />
+            <Calendar size={10} />
             {formatDate(post.created_at)}
           </span>
           <span
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.35rem',
+              gap: '0.3rem',
               fontFamily: 'var(--font-ui)',
-              fontSize: '0.72rem',
+              fontSize: '0.7rem',
               color: 'var(--text-faint)',
-              letterSpacing: '0.05em',
             }}
           >
-            <Clock size={11} />
+            <Clock size={10} />
             {readingTime}
           </span>
           {post.mood_emoji && (
-            <span style={{ fontSize: '0.85rem' }} title={post.mood || ''}>
+            <span style={{ fontSize: '0.8rem' }} title={post.mood || ''}>
               {post.mood_emoji}
             </span>
           )}
         </div>
 
-        {/* Título */}
         <Link href={`/post/${post.slug}`} style={{ textDecoration: 'none' }}>
           <h2
             style={{
               fontFamily: 'var(--font-display)',
-              fontSize: '1.3rem',
+              fontSize: '1.2rem',
               fontWeight: 600,
               color: 'var(--text)',
               lineHeight: 1.3,
-              marginBottom: '0.75rem',
+              marginBottom: '0.625rem',
               transition: 'color var(--transition)',
             }}
             onMouseEnter={(e) => {
@@ -141,15 +123,14 @@ export default function PostCard({ post, index = 0 }: PostCardProps) {
           </h2>
         </Link>
 
-        {/* Excerpt */}
         {post.excerpt && (
           <p
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: '1rem',
+              fontSize: '0.975rem',
               color: 'var(--text-muted)',
               lineHeight: 1.7,
-              marginBottom: '1.25rem',
+              marginBottom: '1rem',
               display: '-webkit-box',
               WebkitLineClamp: 3,
               WebkitBoxOrient: 'vertical',
@@ -160,43 +141,37 @@ export default function PostCard({ post, index = 0 }: PostCardProps) {
           </p>
         )}
 
-        {/* Rodapé — tags e link */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
-            gap: '0.75rem',
+            gap: '0.5rem',
           }}
         >
-          {/* Tags */}
           {post.tags.length > 0 && (
-            <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              <Tag size={11} color="var(--text-faint)" />
-              {post.tags.slice(0, 3).map((tag) => (
+            <div
+              style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap', alignItems: 'center' }}
+            >
+              <Tag size={10} color="var(--text-faint)" />
+              {post.tags.slice(0, 2).map((tag) => (
                 <Link
                   key={tag}
                   href={`/tag/${encodeURIComponent(tag)}`}
+                  className="tag-link"
                   style={{
                     fontFamily: 'var(--font-ui)',
-                    fontSize: '0.68rem',
-                    letterSpacing: '0.06em',
+                    fontSize: '0.65rem',
+                    letterSpacing: '0.05em',
                     color: 'var(--emerald-light)',
                     backgroundColor: 'var(--bg-surface-2)',
                     border: '1px solid var(--emerald-deep)',
                     borderRadius: 'var(--radius-sm)',
-                    padding: '0.15rem 0.5rem',
+                    padding: '0.15rem 0.45rem',
                     textDecoration: 'none',
-                    transition: 'all var(--transition)',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--emerald-deep)'
-                    e.currentTarget.style.color = 'var(--emerald-pale)'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--bg-surface-2)'
-                    e.currentTarget.style.color = 'var(--emerald-light)'
+                    display: 'inline-flex',
+                    alignItems: 'center',
                   }}
                 >
                   {tag}
@@ -204,27 +179,16 @@ export default function PostCard({ post, index = 0 }: PostCardProps) {
               ))}
             </div>
           )}
-
-          {/* Ler mais */}
           <Link
             href={`/post/${post.slug}`}
             style={{
               fontFamily: 'var(--font-ui)',
-              fontSize: '0.78rem',
+              fontSize: '0.75rem',
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
               color: 'var(--gold)',
               textDecoration: 'none',
-              transition: 'color var(--transition)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.3rem',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = 'var(--gold-light)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = 'var(--gold)'
+              whiteSpace: 'nowrap',
             }}
           >
             Ler mais →

@@ -15,18 +15,14 @@ export default function NewsletterForm({ compact = false }: NewsletterFormProps)
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!email) return
-
     setStatus('loading')
-
     try {
       const res = await fetch('/api/newsletter/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       })
-
       const data = await res.json()
-
       if (res.ok) {
         setStatus('success')
         setMessage(data.message || 'Inscrição realizada! Verifique seu email.')
@@ -73,7 +69,6 @@ export default function NewsletterForm({ compact = false }: NewsletterFormProps)
         >
           Receba novos posts por email.
         </p>
-
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           <input
             type="email"
@@ -86,12 +81,11 @@ export default function NewsletterForm({ compact = false }: NewsletterFormProps)
               backgroundColor: 'var(--bg-surface-2)',
               border: '1px solid var(--border)',
               borderRadius: 'var(--radius-sm)',
-              padding: '0.5rem 0.75rem',
+              padding: '0.6rem 0.75rem',
               fontFamily: 'var(--font-ui)',
-              fontSize: '0.82rem',
+              fontSize: '0.9rem',
               color: 'var(--text)',
               outline: 'none',
-              transition: 'border-color var(--transition)',
             }}
             onFocus={(e) => {
               e.currentTarget.style.borderColor = 'var(--emerald)'
@@ -100,7 +94,6 @@ export default function NewsletterForm({ compact = false }: NewsletterFormProps)
               e.currentTarget.style.borderColor = 'var(--border)'
             }}
           />
-
           <button
             type="submit"
             disabled={status === 'loading'}
@@ -109,36 +102,24 @@ export default function NewsletterForm({ compact = false }: NewsletterFormProps)
               backgroundColor: 'var(--emerald)',
               border: 'none',
               borderRadius: 'var(--radius-sm)',
-              padding: '0.5rem',
+              padding: '0.65rem',
               fontFamily: 'var(--font-ui)',
-              fontSize: '0.78rem',
+              fontSize: '0.82rem',
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
               color: 'var(--text)',
               cursor: status === 'loading' ? 'not-allowed' : 'pointer',
-              transition: 'background-color var(--transition)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               gap: '0.4rem',
               opacity: status === 'loading' ? 0.7 : 1,
             }}
-            onMouseEnter={(e) => {
-              if (status !== 'loading') e.currentTarget.style.backgroundColor = 'var(--emerald-mid)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--emerald)'
-            }}
           >
-            {status === 'loading' ? (
-              <Loader2 size={14} className="animate-spin" />
-            ) : (
-              <Mail size={14} />
-            )}
+            {status === 'loading' ? <Loader2 size={14} /> : <Mail size={14} />}
             Assinar
           </button>
         </div>
-
         {status === 'error' && (
           <div
             style={{
@@ -159,64 +140,52 @@ export default function NewsletterForm({ compact = false }: NewsletterFormProps)
     )
   }
 
-  // Versão completa (usada no final dos posts)
+  // Versão completa — no final dos posts
   return (
     <div
+      className="newsletter-full"
       style={{
         backgroundColor: 'var(--bg-surface)',
         border: '1px solid var(--border)',
         borderRadius: 'var(--radius-lg)',
-        padding: '2.5rem',
         textAlign: 'center',
       }}
     >
       <div
         style={{
           fontFamily: 'var(--font-display)',
-          fontSize: '0.65rem',
+          fontSize: '0.6rem',
           letterSpacing: '0.4em',
           textTransform: 'uppercase',
           color: 'var(--gold)',
-          marginBottom: '1rem',
+          marginBottom: '0.875rem',
         }}
       >
         ✦ Newsletter
       </div>
-
       <h3
         style={{
           fontFamily: 'var(--font-display)',
-          fontSize: '1.6rem',
+          fontSize: '1.4rem',
           color: 'var(--text)',
-          marginBottom: '0.75rem',
+          marginBottom: '0.625rem',
         }}
       >
         Não perca nenhum post
       </h3>
-
       <p
         style={{
           fontFamily: 'var(--font-body)',
-          fontSize: '1.05rem',
+          fontSize: '1rem',
           color: 'var(--text-muted)',
-          marginBottom: '1.75rem',
-          maxWidth: '440px',
-          margin: '0 auto 1.75rem',
+          marginBottom: '1.5rem',
+          lineHeight: 1.7,
         }}
       >
         Receba novos textos diretamente no seu email. Sem spam, apenas histórias.
       </p>
 
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          display: 'flex',
-          gap: '0.75rem',
-          maxWidth: '420px',
-          margin: '0 auto',
-          flexWrap: 'wrap',
-        }}
-      >
+      <form onSubmit={handleSubmit} className="newsletter-form-row">
         <input
           type="email"
           value={email}
@@ -225,7 +194,7 @@ export default function NewsletterForm({ compact = false }: NewsletterFormProps)
           required
           style={{
             flex: 1,
-            minWidth: '200px',
+            width: '100%',
             backgroundColor: 'var(--bg-surface-2)',
             border: '1px solid var(--border)',
             borderRadius: 'var(--radius-sm)',
@@ -242,7 +211,6 @@ export default function NewsletterForm({ compact = false }: NewsletterFormProps)
             e.currentTarget.style.borderColor = 'var(--border)'
           }}
         />
-
         <button
           type="submit"
           disabled={status === 'loading'}
@@ -260,14 +228,9 @@ export default function NewsletterForm({ compact = false }: NewsletterFormProps)
             fontWeight: 600,
             display: 'flex',
             alignItems: 'center',
+            justifyContent: 'center',
             gap: '0.5rem',
-            transition: 'background-color var(--transition)',
-          }}
-          onMouseEnter={(e) => {
-            if (status !== 'loading') e.currentTarget.style.backgroundColor = 'var(--gold-light)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'var(--gold)'
+            whiteSpace: 'nowrap',
           }}
         >
           {status === 'loading' ? <Loader2 size={15} /> : <Mail size={15} />}

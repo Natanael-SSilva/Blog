@@ -30,12 +30,12 @@ export default function TagCloud({ tags }: { tags: TagItem[] }) {
 
   return (
     <div
+      className="tags-cloud"
       style={{
         display: 'flex',
         flexWrap: 'wrap',
         gap: '0.75rem',
         alignItems: 'center',
-        padding: '2rem',
         backgroundColor: 'var(--bg-surface)',
         border: '1px solid var(--border)',
         borderRadius: 'var(--radius-lg)',

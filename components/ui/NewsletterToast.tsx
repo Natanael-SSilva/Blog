@@ -44,10 +44,9 @@ export default function NewsletterToast() {
 
   return (
     <div
+      className="newsletter-toast"
       style={{
         position: 'fixed',
-        bottom: '2rem',
-        right: '2rem',
         zIndex: 1000,
         display: 'flex',
         alignItems: 'center',
@@ -57,7 +56,6 @@ export default function NewsletterToast() {
         borderRadius: 'var(--radius-md)',
         padding: '1rem 1.25rem',
         boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
-        maxWidth: '380px',
         animation: 'slideInToast 0.3s ease',
       }}
     >

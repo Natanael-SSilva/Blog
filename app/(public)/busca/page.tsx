@@ -71,7 +71,7 @@ export default async function BuscaPage({ searchParams }: BuscaPageProps) {
         </div>
 
         <form method="GET" action="/busca">
-          <div style={{ display: 'flex', gap: '0.75rem' }}>
+          <div className="search-row">
             <input
               name="q"
               type="search"
