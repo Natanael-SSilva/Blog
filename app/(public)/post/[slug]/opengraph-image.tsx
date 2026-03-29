@@ -1,9 +1,6 @@
 import { ImageResponse } from 'next/og'
 import { createClient } from '@/lib/supabase/server'
 
-// Gera a imagem de preview para cada post quando compartilhado
-// em redes sociais (WhatsApp, Twitter, LinkedIn etc)
-// Acesso: /post/[slug]/opengraph-image
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -40,10 +37,11 @@ export default async function PostOGImage({ params }: Props) {
           fontFamily: 'Georgia, serif',
         }}
       >
-        {/* Imagem de fundo se houver capa */}
         {post?.cover_image && (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={post.cover_image}
+            alt=""
             style={{
               position: 'absolute',
               inset: 0,
@@ -55,7 +53,6 @@ export default async function PostOGImage({ params }: Props) {
           />
         )}
 
-        {/* Gradiente de baixo */}
         <div
           style={{
             position: 'absolute',
@@ -65,7 +62,6 @@ export default async function PostOGImage({ params }: Props) {
           }}
         />
 
-        {/* Linha dourada no topo */}
         <div
           style={{
             position: 'absolute',
@@ -78,7 +74,6 @@ export default async function PostOGImage({ params }: Props) {
           }}
         />
 
-        {/* Conteúdo */}
         <div
           style={{
             position: 'relative',
@@ -88,7 +83,6 @@ export default async function PostOGImage({ params }: Props) {
             gap: '20px',
           }}
         >
-          {/* Label */}
           <div
             style={{
               fontSize: '14px',
@@ -101,7 +95,6 @@ export default async function PostOGImage({ params }: Props) {
             ✦ {siteName}
           </div>
 
-          {/* Título */}
           <div
             style={{
               fontSize: title.length > 60 ? '42px' : '52px',
@@ -114,7 +107,6 @@ export default async function PostOGImage({ params }: Props) {
             {title}
           </div>
 
-          {/* Excerpt */}
           {excerpt && (
             <div
               style={{

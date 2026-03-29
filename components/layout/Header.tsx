@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { Menu, X, Feather } from 'lucide-react'
-import { cn } from '@/lib/utils'
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)

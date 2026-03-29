@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useSearchParams, useRouter } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { CheckCircle2, XCircle, X } from 'lucide-react'
 
 const MESSAGES: Record<string, { text: string; type: 'success' | 'info' | 'error' }> = {
@@ -14,7 +14,6 @@ const MESSAGES: Record<string, { text: string; type: 'success' | 'info' | 'error
 
 export default function NewsletterToast() {
   const searchParams = useSearchParams()
-  const router = useRouter()
   const [visible, setVisible] = useState(false)
   const [msg, setMsg] = useState<{ text: string; type: 'success' | 'info' | 'error' } | null>(null)
 

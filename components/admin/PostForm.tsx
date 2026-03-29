@@ -6,7 +6,7 @@ import { createClient } from '@/lib/supabase/client'
 import { Post, MOODS } from '@/types'
 import { generateSlug, generateExcerpt } from '@/lib/utils'
 import TiptapEditor from './TiptapEditor'
-import { Save, Eye, Upload, X, Loader2, ImageIcon } from 'lucide-react'
+import { Save, Eye, X, Loader2, ImageIcon } from 'lucide-react'
 import Image from 'next/image'
 
 interface PostFormProps {
@@ -34,23 +34,30 @@ export default function PostForm({ post }: PostFormProps) {
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saved' | 'error'>('idle')
   const [autoSaveTimer, setAutoSaveTimer] = useState<NodeJS.Timeout | null>(null)
 
-  // Auto-gerar slug a partir do título
   useEffect(() => {
     if (!slugManual && title) {
       setSlug(generateSlug(title))
     }
   }, [title, slugManual])
 
-  // Auto-save a cada 30s (apenas rascunhos)
-  const autoSave = useCallback(async () => {
-    if (!isEditing || published) return
-    await handleSave(false, true)
-  }, [content, title, excerpt, tags])
+   
+  const autoSave = useCallback(
+    async () => {
+      if (!isEditing || published) return
+      await handleSave(false, true)
+    },
+    // handleSave é recriada a cada render mas não deve entrar nas deps
+    // pois causaria loop infinito no auto-save
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [content, title, excerpt, tags]
+  )
+
   useEffect(() => {
     if (autoSaveTimer) clearTimeout(autoSaveTimer)
     const timer = setTimeout(autoSave, 30000)
     setAutoSaveTimer(timer)
     return () => clearTimeout(timer)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [content, title])
 
   async function handleUploadCover(e: React.ChangeEvent<HTMLInputElement>) {
@@ -161,10 +168,8 @@ export default function PostForm({ post }: PostFormProps) {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 280px', gap: '2rem', alignItems: 'flex-start' }}>
 
-      {/* Coluna principal */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', minWidth: 0 }}>
 
-        {/* Título */}
         <div>
           <label style={labelStyle}>Título *</label>
           <input
@@ -178,7 +183,6 @@ export default function PostForm({ post }: PostFormProps) {
           />
         </div>
 
-        {/* Slug */}
         <div>
           <label style={labelStyle}>Slug (URL)</label>
           <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
@@ -196,17 +200,11 @@ export default function PostForm({ post }: PostFormProps) {
           </div>
         </div>
 
-        {/* Editor */}
         <div>
           <label style={labelStyle}>Conteúdo *</label>
-          <TiptapEditor
-            content={content}
-            onChange={setContent}
-            placeholder="Escreva aqui…"
-          />
+          <TiptapEditor content={content} onChange={setContent} placeholder="Escreva aqui…" />
         </div>
 
-        {/* Excerpt */}
         <div>
           <label style={labelStyle}>Resumo (excerpt)</label>
           <textarea
@@ -221,10 +219,8 @@ export default function PostForm({ post }: PostFormProps) {
         </div>
       </div>
 
-      {/* Coluna lateral */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', position: 'sticky', top: '2rem' }}>
 
-        {/* Ações */}
         <div
           style={{
             backgroundColor: 'var(--bg-surface)',
@@ -237,17 +233,12 @@ export default function PostForm({ post }: PostFormProps) {
           }}
         >
           {saveStatus === 'saved' && (
-            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '0.75rem', color: 'var(--emerald-light)', textAlign: 'center' }}>
-              ✓ Salvo
-            </p>
+            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '0.75rem', color: 'var(--emerald-light)', textAlign: 'center' }}>✓ Salvo</p>
           )}
           {saveStatus === 'error' && (
-            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '0.75rem', color: '#e57373', textAlign: 'center' }}>
-              Erro ao salvar
-            </p>
+            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '0.75rem', color: '#e57373', textAlign: 'center' }}>Erro ao salvar</p>
           )}
 
-          {/* Rascunho */}
           <button
             type="button"
             onClick={() => handleSave(false)}
@@ -267,14 +258,12 @@ export default function PostForm({ post }: PostFormProps) {
               alignItems: 'center',
               justifyContent: 'center',
               gap: '0.5rem',
-              transition: 'all var(--transition)',
             }}
           >
             {saving ? <Loader2 size={13} /> : <Save size={13} />}
             Salvar rascunho
           </button>
 
-          {/* Publicar */}
           <button
             type="button"
             onClick={() => handleSave(true)}
@@ -295,36 +284,24 @@ export default function PostForm({ post }: PostFormProps) {
               justifyContent: 'center',
               gap: '0.5rem',
               fontWeight: 600,
-              transition: 'all var(--transition)',
             }}
           >
             {saving ? <Loader2 size={13} /> : <Eye size={13} />}
             {published ? '✓ Publicado' : 'Publicar'}
           </button>
 
-          {/* Despublicar se publicado */}
           {published && (
             <button
               type="button"
               onClick={() => handleSave(false)}
               disabled={saving}
-              style={{
-                width: '100%',
-                background: 'none',
-                border: 'none',
-                fontFamily: 'var(--font-ui)',
-                fontSize: '0.72rem',
-                color: 'var(--text-faint)',
-                cursor: 'pointer',
-                padding: '0.25rem',
-              }}
+              style={{ width: '100%', background: 'none', border: 'none', fontFamily: 'var(--font-ui)', fontSize: '0.72rem', color: 'var(--text-faint)', cursor: 'pointer', padding: '0.25rem' }}
             >
               Voltar para rascunho
             </button>
           )}
         </div>
 
-        {/* Imagem de capa */}
         <div
           style={{
             backgroundColor: 'var(--bg-surface)',
@@ -374,13 +351,10 @@ export default function PostForm({ post }: PostFormProps) {
                 border: '2px dashed var(--border)',
                 borderRadius: 'var(--radius-sm)',
                 cursor: 'pointer',
-                transition: 'all var(--transition)',
                 backgroundColor: 'var(--bg-surface-2)',
               }}
             >
-              {uploading ? (
-                <Loader2 size={20} color="var(--text-faint)" />
-              ) : (
+              {uploading ? <Loader2 size={20} color="var(--text-faint)" /> : (
                 <>
                   <ImageIcon size={20} color="var(--text-faint)" />
                   <span style={{ fontFamily: 'var(--font-ui)', fontSize: '0.75rem', color: 'var(--text-faint)' }}>
@@ -388,17 +362,11 @@ export default function PostForm({ post }: PostFormProps) {
                   </span>
                 </>
               )}
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleUploadCover}
-                style={{ display: 'none' }}
-              />
+              <input type="file" accept="image/*" onChange={handleUploadCover} style={{ display: 'none' }} />
             </label>
           )}
         </div>
 
-        {/* Mood */}
         <div
           style={{
             backgroundColor: 'var(--bg-surface)',
@@ -414,13 +382,8 @@ export default function PostForm({ post }: PostFormProps) {
                 key={m.value}
                 type="button"
                 onClick={() => {
-                  if (mood === m.value) {
-                    setMood('')
-                    setMoodEmoji('')
-                  } else {
-                    setMood(m.label)
-                    setMoodEmoji(m.emoji)
-                  }
+                  if (mood === m.value) { setMood(''); setMoodEmoji('') }
+                  else { setMood(m.label); setMoodEmoji(m.emoji) }
                 }}
                 title={m.label}
                 style={{
@@ -430,7 +393,6 @@ export default function PostForm({ post }: PostFormProps) {
                   padding: '0.3rem 0.5rem',
                   cursor: 'pointer',
                   fontSize: '1rem',
-                  transition: 'all var(--transition)',
                   backgroundColor: mood === m.value ? 'var(--emerald-deep)' : 'var(--bg-surface-2)',
                 }}
               >
@@ -445,7 +407,6 @@ export default function PostForm({ post }: PostFormProps) {
           )}
         </div>
 
-        {/* Tags */}
         <div
           style={{
             backgroundColor: 'var(--bg-surface)',
@@ -469,7 +430,6 @@ export default function PostForm({ post }: PostFormProps) {
           </p>
         </div>
 
-        {/* Opções */}
         <div
           style={{
             backgroundColor: 'var(--bg-surface)',
@@ -482,7 +442,6 @@ export default function PostForm({ post }: PostFormProps) {
           }}
         >
           <label style={{ ...labelStyle, marginBottom: 0 }}>Opções</label>
-
           <label style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', cursor: 'pointer' }}>
             <input
               type="checkbox"
@@ -497,7 +456,6 @@ export default function PostForm({ post }: PostFormProps) {
         </div>
       </div>
 
-      {/* Responsividade */}
       <style>{`
         @media (max-width: 900px) {
           div[style*="grid-template-columns: 1fr 280px"] {

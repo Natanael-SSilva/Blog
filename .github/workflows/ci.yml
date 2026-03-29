@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Lint, Types & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Cache das dependências
+        uses: actions/cache@v4
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Instalar dependências
+        run: pnpm install --frozen-lockfile
+
+      # Valida formatação sem modificar arquivos
+      - name: Checar formatação (Prettier)
+        run: pnpm format:check
+
+      # Verifica erros de lint
+      - name: Checar lint (ESLint)
+        run: pnpm lint
+
+      # Verifica erros de tipo TypeScript
+      - name: Checar tipos (TypeScript)
+        run: pnpm type-check
+
+      # Tenta fazer o build completo
+      # Se passar aqui, a Vercel vai conseguir fazer o deploy
+      - name: Build
+        run: pnpm build
+        env:
+          # Variáveis necessárias para o build não falhar por falta de env
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
+          NEXT_PUBLIC_SITE_NAME: ${{ secrets.NEXT_PUBLIC_SITE_NAME }}
+          NEXT_PUBLIC_SITE_DESCRIPTION: ${{ secrets.NEXT_PUBLIC_SITE_DESCRIPTION }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM_EMAIL: ${{ secrets.RESEND_FROM_EMAIL }}
+          RESEND_FROM_NAME: ${{ secrets.RESEND_FROM_NAME }}
