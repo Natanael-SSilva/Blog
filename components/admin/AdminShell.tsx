@@ -7,8 +7,8 @@ import { Feather, LayoutDashboard, FileText, Mail, Menu, X } from 'lucide-react'
 import AdminLogoutButton from './AdminLogoutButton'
 
 const NAV_ITEMS: { href: string; label: string; icon: React.ReactNode }[] = [
-  { href: '/admin/posts',      label: 'Posts',      icon: <LayoutDashboard size={15} /> },
-  { href: '/admin/posts/novo', label: 'Novo Post',  icon: <FileText size={15} /> },
+  { href: '/admin/posts', label: 'Posts', icon: <LayoutDashboard size={15} /> },
+  { href: '/admin/posts/novo', label: 'Novo Post', icon: <FileText size={15} /> },
   { href: '/admin/newsletter', label: 'Newsletter', icon: <Mail size={15} /> },
 ]
 
@@ -43,12 +43,39 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
           <Feather size={12} color="var(--gold-light)" strokeWidth={1.5} />
         </div>
         <div>
-          <div style={{ fontFamily: 'var(--font-display)', fontSize: '0.82rem', color: 'var(--text)', letterSpacing: '0.06em' }}>Admin</div>
-          <div style={{ fontFamily: 'var(--font-ui)', fontSize: '0.6rem', color: 'var(--text-faint)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Painel</div>
+          <div
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '0.82rem',
+              color: 'var(--text)',
+              letterSpacing: '0.06em',
+            }}
+          >
+            Admin
+          </div>
+          <div
+            style={{
+              fontFamily: 'var(--font-ui)',
+              fontSize: '0.6rem',
+              color: 'var(--text-faint)',
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+            }}
+          >
+            Painel
+          </div>
         </div>
       </div>
 
-      <nav style={{ flex: 1, padding: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+      <nav
+        style={{
+          flex: 1,
+          padding: '0.75rem',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '0.2rem',
+        }}
+      >
         {NAV_ITEMS.map((item) => {
           const active =
             pathname === item.href ||
@@ -75,18 +102,41 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
                 transition: 'all var(--transition)',
               }}
             >
-              <span style={{ color: active ? 'var(--emerald-light)' : 'var(--text-faint)', display: 'flex' }}>{item.icon}</span>
+              <span
+                style={{
+                  color: active ? 'var(--emerald-light)' : 'var(--text-faint)',
+                  display: 'flex',
+                }}
+              >
+                {item.icon}
+              </span>
               {item.label}
             </Link>
           )
         })}
       </nav>
 
-      <div style={{ padding: '0.75rem', borderTop: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+      <div
+        style={{
+          padding: '0.75rem',
+          borderTop: '1px solid var(--border)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '0.25rem',
+        }}
+      >
         <Link
           href="/"
           onClick={() => setMobileOpen(false)}
-          style={{ fontFamily: 'var(--font-ui)', fontSize: '0.78rem', color: 'var(--text-faint)', textDecoration: 'none', padding: '0.5rem 0.75rem', borderRadius: 'var(--radius-sm)', display: 'block' }}
+          style={{
+            fontFamily: 'var(--font-ui)',
+            fontSize: '0.78rem',
+            color: 'var(--text-faint)',
+            textDecoration: 'none',
+            padding: '0.5rem 0.75rem',
+            borderRadius: 'var(--radius-sm)',
+            display: 'block',
+          }}
         >
           ← Ver blog
         </Link>
@@ -97,7 +147,6 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
-
       {/* Sidebar desktop */}
       <aside
         className="admin-sidebar-desktop"
@@ -136,14 +185,39 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <div style={{ width: '24px', height: '24px', background: 'linear-gradient(135deg, var(--emerald-deep), var(--emerald))', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div
+              style={{
+                width: '24px',
+                height: '24px',
+                background: 'linear-gradient(135deg, var(--emerald-deep), var(--emerald))',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
               <Feather size={10} color="var(--gold-light)" strokeWidth={1.5} />
             </div>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', color: 'var(--text)' }}>Admin</span>
+            <span
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '0.85rem',
+                color: 'var(--text)',
+              }}
+            >
+              Admin
+            </span>
           </div>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            style={{ background: 'none', border: 'none', color: 'var(--text)', cursor: 'pointer', display: 'flex', padding: '0.5rem' }}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'var(--text)',
+              cursor: 'pointer',
+              display: 'flex',
+              padding: '0.5rem',
+            }}
             aria-label="Menu"
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
@@ -154,7 +228,12 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
           <>
             <div
               onClick={() => setMobileOpen(false)}
-              style={{ position: 'fixed', inset: 0, zIndex: 210, backgroundColor: 'rgba(0,0,0,0.6)' }}
+              style={{
+                position: 'fixed',
+                inset: 0,
+                zIndex: 210,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+              }}
             />
             <div
               style={{
@@ -180,7 +259,13 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
       {/* Conteúdo */}
       <main
         className="admin-main"
-        style={{ flex: 1, minWidth: 0, backgroundColor: 'var(--bg)', padding: '2rem', overflowY: 'auto' }}
+        style={{
+          flex: 1,
+          minWidth: 0,
+          backgroundColor: 'var(--bg)',
+          padding: '2rem',
+          overflowY: 'auto',
+        }}
       >
         {children}
       </main>

@@ -24,8 +24,12 @@ export default function SidebarRecentLinks({ posts }: { posts: RecentPost[] }) {
               transition: 'color var(--transition)',
               textDecoration: 'none',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--emerald-light)' }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-muted)' }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = 'var(--emerald-light)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = 'var(--text-muted)'
+            }}
           >
             {post.title}
           </Link>

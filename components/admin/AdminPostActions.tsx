@@ -14,10 +14,7 @@ export default function AdminPostActions({ post }: { post: Post }) {
   async function togglePublished() {
     setLoading('publish')
     const supabase = createClient()
-    await supabase
-      .from('posts')
-      .update({ published: !post.published })
-      .eq('id', post.id)
+    await supabase.from('posts').update({ published: !post.published }).eq('id', post.id)
     router.refresh()
     setLoading(null)
   }
@@ -28,16 +25,10 @@ export default function AdminPostActions({ post }: { post: Post }) {
 
     // Remove featured de qualquer outro post primeiro
     if (!post.is_featured) {
-      await supabase
-        .from('posts')
-        .update({ is_featured: false })
-        .eq('is_featured', true)
+      await supabase.from('posts').update({ is_featured: false }).eq('is_featured', true)
     }
 
-    await supabase
-      .from('posts')
-      .update({ is_featured: !post.is_featured })
-      .eq('id', post.id)
+    await supabase.from('posts').update({ is_featured: !post.is_featured }).eq('id', post.id)
 
     router.refresh()
     setLoading(null)
@@ -109,17 +100,8 @@ export default function AdminPostActions({ post }: { post: Post }) {
       </button>
 
       {/* Deletar */}
-      <button
-        onClick={deletePost}
-        title="Deletar"
-        style={btnStyle}
-        disabled={loading === 'delete'}
-      >
-        {loading === 'delete' ? (
-          <Loader2 size={13} />
-        ) : (
-          <Trash2 size={13} color="#e57373" />
-        )}
+      <button onClick={deletePost} title="Deletar" style={btnStyle} disabled={loading === 'delete'}>
+        {loading === 'delete' ? <Loader2 size={13} /> : <Trash2 size={13} color="#e57373" />}
       </button>
     </div>
   )

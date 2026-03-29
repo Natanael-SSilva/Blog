@@ -44,18 +44,13 @@ function extractTextFromTiptap(node: Record<string, unknown>): string {
   }
 
   if (Array.isArray(node.content)) {
-    return (node.content as Record<string, unknown>[])
-      .map(extractTextFromTiptap)
-      .join(' ')
+    return (node.content as Record<string, unknown>[]).map(extractTextFromTiptap).join(' ')
   }
 
   return ''
 }
 
-export function generateExcerpt(
-  content: Record<string, unknown>,
-  maxLength = 160
-): string {
+export function generateExcerpt(content: Record<string, unknown>, maxLength = 160): string {
   const text = extractTextFromTiptap(content)
   if (text.length <= maxLength) return text
   return text.slice(0, maxLength).trimEnd() + '…'

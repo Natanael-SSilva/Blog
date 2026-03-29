@@ -1,4 +1,3 @@
-
 export interface Post {
   id: string
   slug: string
@@ -24,10 +23,8 @@ export interface Subscriber {
   unsubscribed_at: string | null
 }
 
-
 export type CreatePostDTO = Omit<Post, 'id' | 'created_at' | 'updated_at'>
 export type UpdatePostDTO = Partial<CreatePostDTO>
-
 
 export interface Mood {
   label: string

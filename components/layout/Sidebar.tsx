@@ -19,10 +19,7 @@ async function getRecentPosts(): Promise<Post[]> {
 
 async function getAllTags(): Promise<{ tag: string; count: number }[]> {
   const supabase = await createClient()
-  const { data } = await supabase
-    .from('posts')
-    .select('tags')
-    .eq('published', true)
+  const { data } = await supabase.from('posts').select('tags').eq('published', true)
 
   if (!data) return []
 
@@ -39,10 +36,7 @@ async function getAllTags(): Promise<{ tag: string; count: number }[]> {
 }
 
 export default async function Sidebar() {
-  const [recentPosts, tags] = await Promise.all([
-    getRecentPosts(),
-    getAllTags(),
-  ])
+  const [recentPosts, tags] = await Promise.all([getRecentPosts(), getAllTags()])
 
   const recentItems = recentPosts.map((p) => ({
     slug: p.slug,
@@ -81,7 +75,16 @@ export default async function Sidebar() {
 
       {/* Divisor ornamental */}
       <div className="ornament-divider">
-        <span style={{ fontSize: '0.65rem', letterSpacing: '0.3em', fontFamily: 'var(--font-ui)', color: 'var(--gold)' }}>✦</span>
+        <span
+          style={{
+            fontSize: '0.65rem',
+            letterSpacing: '0.3em',
+            fontFamily: 'var(--font-ui)',
+            color: 'var(--gold)',
+          }}
+        >
+          ✦
+        </span>
       </div>
     </aside>
   )

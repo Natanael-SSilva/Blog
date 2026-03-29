@@ -56,7 +56,8 @@ export default function LoginPage() {
         <div
           style={{
             height: '2px',
-            background: 'linear-gradient(to right, transparent, var(--gold-deep), var(--gold), var(--gold-deep), transparent)',
+            background:
+              'linear-gradient(to right, transparent, var(--gold-deep), var(--gold), var(--gold-deep), transparent)',
           }}
         />
 
@@ -110,7 +111,10 @@ export default function LoginPage() {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <form
+            onSubmit={handleSubmit}
+            style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+          >
             <div>
               <label
                 htmlFor="email"
@@ -145,8 +149,12 @@ export default function LoginPage() {
                   outline: 'none',
                   transition: 'border-color var(--transition)',
                 }}
-                onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--emerald)' }}
-                onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--border)' }}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--emerald)'
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--border)'
+                }}
               />
             </div>
 
@@ -184,8 +192,12 @@ export default function LoginPage() {
                     outline: 'none',
                     transition: 'border-color var(--transition)',
                   }}
-                  onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--emerald)' }}
-                  onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--border)' }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--emerald)'
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--border)'
+                  }}
                 />
                 <button
                   type="button"

@@ -8,22 +8,18 @@ function renderNode(node: Record<string, unknown>): string {
 
   switch (node.type) {
     case 'doc':
-      return (node.content as Record<string, unknown>[])
-        ?.map(renderNode)
-        .join('') || ''
+      return (node.content as Record<string, unknown>[])?.map(renderNode).join('') || ''
 
     case 'paragraph': {
-      const content = (node.content as Record<string, unknown>[] | undefined)
-        ?.map(renderNode)
-        .join('') || ''
+      const content =
+        (node.content as Record<string, unknown>[] | undefined)?.map(renderNode).join('') || ''
       return `<p>${content}</p>`
     }
 
     case 'heading': {
       const level = (node.attrs as Record<string, unknown>)?.level || 2
-      const content = (node.content as Record<string, unknown>[] | undefined)
-        ?.map(renderNode)
-        .join('') || ''
+      const content =
+        (node.content as Record<string, unknown>[] | undefined)?.map(renderNode).join('') || ''
       return `<h${level}>${content}</h${level}>`
     }
 
@@ -55,37 +51,34 @@ function renderNode(node: Record<string, unknown>): string {
     }
 
     case 'blockquote': {
-      const content = (node.content as Record<string, unknown>[] | undefined)
-        ?.map(renderNode)
-        .join('') || ''
+      const content =
+        (node.content as Record<string, unknown>[] | undefined)?.map(renderNode).join('') || ''
       return `<blockquote>${content}</blockquote>`
     }
 
     case 'bulletList': {
-      const items = (node.content as Record<string, unknown>[] | undefined)
-        ?.map(renderNode)
-        .join('') || ''
+      const items =
+        (node.content as Record<string, unknown>[] | undefined)?.map(renderNode).join('') || ''
       return `<ul>${items}</ul>`
     }
 
     case 'orderedList': {
-      const items = (node.content as Record<string, unknown>[] | undefined)
-        ?.map(renderNode)
-        .join('') || ''
+      const items =
+        (node.content as Record<string, unknown>[] | undefined)?.map(renderNode).join('') || ''
       return `<ol>${items}</ol>`
     }
 
     case 'listItem': {
-      const content = (node.content as Record<string, unknown>[] | undefined)
-        ?.map(renderNode)
-        .join('') || ''
+      const content =
+        (node.content as Record<string, unknown>[] | undefined)?.map(renderNode).join('') || ''
       return `<li>${content}</li>`
     }
 
     case 'codeBlock': {
-      const code = (node.content as Record<string, unknown>[] | undefined)
-        ?.map((n) => escapeHtml((n.text as string) || ''))
-        .join('') || ''
+      const code =
+        (node.content as Record<string, unknown>[] | undefined)
+          ?.map((n) => escapeHtml((n.text as string) || ''))
+          .join('') || ''
       return `<pre><code>${code}</code></pre>`
     }
 

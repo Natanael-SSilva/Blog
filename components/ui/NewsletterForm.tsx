@@ -124,8 +124,7 @@ export default function NewsletterForm({ compact = false }: NewsletterFormProps)
               opacity: status === 'loading' ? 0.7 : 1,
             }}
             onMouseEnter={(e) => {
-              if (status !== 'loading')
-                e.currentTarget.style.backgroundColor = 'var(--emerald-mid)'
+              if (status !== 'loading') e.currentTarget.style.backgroundColor = 'var(--emerald-mid)'
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.backgroundColor = 'var(--emerald)'
@@ -265,8 +264,7 @@ export default function NewsletterForm({ compact = false }: NewsletterFormProps)
             transition: 'background-color var(--transition)',
           }}
           onMouseEnter={(e) => {
-            if (status !== 'loading')
-              e.currentTarget.style.backgroundColor = 'var(--gold-light)'
+            if (status !== 'loading') e.currentTarget.style.backgroundColor = 'var(--gold-light)'
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.backgroundColor = 'var(--gold)'

@@ -34,9 +34,7 @@ export async function POST(request: NextRequest) {
         .update({ unsubscribed_at: null, confirmed: false })
         .eq('id', existing.id)
     } else {
-      const { error } = await supabase
-        .from('newsletter_subscribers')
-        .insert({ email })
+      const { error } = await supabase.from('newsletter_subscribers').insert({ email })
       if (error) {
         return NextResponse.json({ error: 'Erro ao salvar inscrição.' }, { status: 500 })
       }

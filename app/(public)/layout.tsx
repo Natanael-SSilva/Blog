@@ -21,9 +21,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
           flex: 1,
         }}
       >
-        <main style={{ flex: 1, minWidth: 0 }}>
-          {children}
-        </main>
+        <main style={{ flex: 1, minWidth: 0 }}>{children}</main>
 
         <div className="sidebar-wrapper">
           <Sidebar />

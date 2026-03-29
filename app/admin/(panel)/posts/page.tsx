@@ -44,8 +44,15 @@ export default async function AdminPostsPage() {
           >
             Posts
           </h1>
-          <p style={{ fontFamily: 'var(--font-ui)', fontSize: '0.82rem', color: 'var(--text-faint)' }}>
-            {published} publicado{published !== 1 ? 's' : ''} · {drafts} rascunho{drafts !== 1 ? 's' : ''}
+          <p
+            style={{
+              fontFamily: 'var(--font-ui)',
+              fontSize: '0.82rem',
+              color: 'var(--text-faint)',
+            }}
+          >
+            {published} publicado{published !== 1 ? 's' : ''} · {drafts} rascunho
+            {drafts !== 1 ? 's' : ''}
           </p>
         </div>
 
@@ -215,7 +222,9 @@ export default async function AdminPostsPage() {
                       width: '5px',
                       height: '5px',
                       borderRadius: '50%',
-                      backgroundColor: post.published ? 'var(--emerald-light)' : 'var(--text-faint)',
+                      backgroundColor: post.published
+                        ? 'var(--emerald-light)'
+                        : 'var(--text-faint)',
                       flexShrink: 0,
                     }}
                   />

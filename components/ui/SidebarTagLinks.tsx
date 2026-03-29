@@ -41,9 +41,7 @@ export default function SidebarTagLinks({ tags }: { tags: TagItem[] }) {
           }}
         >
           {tag}
-          <span style={{ fontSize: '0.65rem', color: 'var(--text-faint)' }}>
-            {count}
-          </span>
+          <span style={{ fontSize: '0.65rem', color: 'var(--text-faint)' }}>{count}</span>
         </Link>
       ))}
     </div>

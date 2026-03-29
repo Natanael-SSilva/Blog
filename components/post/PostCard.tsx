@@ -30,7 +30,8 @@ export default function PostCard({ post, index = 0 }: PostCardProps) {
       }}
       whileHover={{
         borderColor: 'var(--emerald)',
-        boxShadow: '0 0 0 1px var(--emerald), 0 8px 32px rgba(0,0,0,0.4), 0 0 24px rgba(45,106,79,0.12)',
+        boxShadow:
+          '0 0 0 1px var(--emerald), 0 8px 32px rgba(0,0,0,0.4), 0 0 24px rgba(45,106,79,0.12)',
         y: -2,
       }}
     >
@@ -38,7 +39,8 @@ export default function PostCard({ post, index = 0 }: PostCardProps) {
       <div
         style={{
           height: '2px',
-          background: 'linear-gradient(to right, var(--emerald-deep), var(--emerald-mid), transparent)',
+          background:
+            'linear-gradient(to right, var(--emerald-deep), var(--emerald-mid), transparent)',
           opacity: 0.6,
         }}
       />

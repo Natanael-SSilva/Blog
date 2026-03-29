@@ -34,15 +34,35 @@ export default function PostNav({ prev, next }: PostNavProps) {
         <Link
           href={`/post/${prev.slug}`}
           style={linkBase}
-          onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--emerald)' }}
-          onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)' }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = 'var(--emerald)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = 'var(--border)'
+          }}
         >
           <ChevronLeft size={18} color="var(--text-faint)" />
           <div>
-            <div style={{ fontFamily: 'var(--font-ui)', fontSize: '0.68rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: '0.25rem' }}>
+            <div
+              style={{
+                fontFamily: 'var(--font-ui)',
+                fontSize: '0.68rem',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: 'var(--text-faint)',
+                marginBottom: '0.25rem',
+              }}
+            >
               Anterior
             </div>
-            <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: 1.3 }}>
+            <div
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.95rem',
+                color: 'var(--text-muted)',
+                lineHeight: 1.3,
+              }}
+            >
               {prev.title}
             </div>
           </div>
@@ -52,15 +72,40 @@ export default function PostNav({ prev, next }: PostNavProps) {
       {next && (
         <Link
           href={`/post/${next.slug}`}
-          style={{ ...linkBase, justifyContent: 'flex-end', textAlign: 'right', gridColumn: prev ? undefined : '1 / -1' }}
-          onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--emerald)' }}
-          onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)' }}
+          style={{
+            ...linkBase,
+            justifyContent: 'flex-end',
+            textAlign: 'right',
+            gridColumn: prev ? undefined : '1 / -1',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = 'var(--emerald)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = 'var(--border)'
+          }}
         >
           <div>
-            <div style={{ fontFamily: 'var(--font-ui)', fontSize: '0.68rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: '0.25rem' }}>
+            <div
+              style={{
+                fontFamily: 'var(--font-ui)',
+                fontSize: '0.68rem',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: 'var(--text-faint)',
+                marginBottom: '0.25rem',
+              }}
+            >
               Próximo
             </div>
-            <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: 1.3 }}>
+            <div
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.95rem',
+                color: 'var(--text-muted)',
+                lineHeight: 1.3,
+              }}
+            >
               {next.title}
             </div>
           </div>

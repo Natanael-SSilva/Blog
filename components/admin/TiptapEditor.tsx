@@ -6,8 +6,19 @@ import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
 import Placeholder from '@tiptap/extension-placeholder'
 import {
-  Bold, Italic, Heading2, Heading3, List, ListOrdered,
-  Quote, Minus, Link2, Image as ImageIcon, Undo, Redo, Code,
+  Bold,
+  Italic,
+  Heading2,
+  Heading3,
+  List,
+  ListOrdered,
+  Quote,
+  Minus,
+  Link2,
+  Image as ImageIcon,
+  Undo,
+  Redo,
+  Code,
 } from 'lucide-react'
 
 interface TiptapEditorProps {
@@ -79,7 +90,7 @@ export default function TiptapEditor({
       backgroundColor: active ? 'var(--emerald-deep)' : 'transparent',
       color: active ? 'var(--emerald-light)' : 'var(--text-faint)',
       flexShrink: 0,
-    } as React.CSSProperties)
+    }) as React.CSSProperties
 
   const sep = (
     <div
@@ -203,12 +214,7 @@ export default function TiptapEditor({
         >
           <Link2 size={14} />
         </button>
-        <button
-          type="button"
-          onClick={addImage}
-          style={toolbarBtnStyle()}
-          title="Imagem por URL"
-        >
+        <button type="button" onClick={addImage} style={toolbarBtnStyle()} title="Imagem por URL">
           <ImageIcon size={14} />
         </button>
 

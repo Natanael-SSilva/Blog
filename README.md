@@ -83,17 +83,17 @@ Acesse [http://localhost:3000](http://localhost:3000)
 
 ## 6. Estrutura das rotas
 
-| Rota | Descrição |
-|---|---|
-| `/` | Home com lista de posts |
-| `/post/[slug]` | Post individual |
-| `/tag/[tag]` | Posts por tag |
-| `/busca?q=...` | Busca full-text |
-| `/admin/login` | Login do painel |
-| `/admin/posts` | Lista de posts (admin) |
-| `/admin/posts/novo` | Criar post |
-| `/admin/posts/[id]/editar` | Editar post |
-| `/admin/newsletter` | Gerenciar newsletter |
+| Rota                       | Descrição               |
+| -------------------------- | ----------------------- |
+| `/`                        | Home com lista de posts |
+| `/post/[slug]`             | Post individual         |
+| `/tag/[tag]`               | Posts por tag           |
+| `/busca?q=...`             | Busca full-text         |
+| `/admin/login`             | Login do painel         |
+| `/admin/posts`             | Lista de posts (admin)  |
+| `/admin/posts/novo`        | Criar post              |
+| `/admin/posts/[id]/editar` | Editar post             |
+| `/admin/newsletter`        | Gerenciar newsletter    |
 
 ---
 
@@ -117,13 +117,13 @@ Ou conecte o repositório GitHub diretamente no painel da Vercel para deploy aut
 
 ## 8. Sprints do projeto
 
-| Sprint | Status | Conteúdo |
-|---|---|---|
+| Sprint   | Status       | Conteúdo                                             |
+| -------- | ------------ | ---------------------------------------------------- |
 | Sprint 1 | ✅ Concluído | Setup, design system, layout, home, post, tag, busca |
-| Sprint 2 | 🔄 Próximo | Painel admin completo + editor Tiptap |
-| Sprint 3 | ⏳ Pendente | Upload de imagens, autenticação admin |
-| Sprint 4 | ⏳ Pendente | Newsletter com Resend, email de confirmação |
-| Sprint 5 | ⏳ Pendente | SEO avançado, sitemap, OG images dinâmicas, polish |
+| Sprint 2 | 🔄 Próximo   | Painel admin completo + editor Tiptap                |
+| Sprint 3 | ⏳ Pendente  | Upload de imagens, autenticação admin                |
+| Sprint 4 | ⏳ Pendente  | Newsletter com Resend, email de confirmação          |
+| Sprint 5 | ⏳ Pendente  | SEO avançado, sitemap, OG images dinâmicas, polish   |
 
 ---
 

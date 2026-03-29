@@ -40,7 +40,6 @@ export default function PostForm({ post }: PostFormProps) {
     }
   }, [title, slugManual])
 
-   
   const autoSave = useCallback(
     async () => {
       if (!isEditing || published) return
@@ -57,7 +56,7 @@ export default function PostForm({ post }: PostFormProps) {
     const timer = setTimeout(autoSave, 30000)
     setAutoSaveTimer(timer)
     return () => clearTimeout(timer)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [content, title])
 
   async function handleUploadCover(e: React.ChangeEvent<HTMLInputElement>) {
@@ -75,9 +74,7 @@ export default function PostForm({ post }: PostFormProps) {
       .upload(fileName, file, { upsert: true })
 
     if (!error && data) {
-      const { data: urlData } = supabase.storage
-        .from('blog-media')
-        .getPublicUrl(data.path)
+      const { data: urlData } = supabase.storage.from('blog-media').getPublicUrl(data.path)
       setCoverImage(urlData.publicUrl)
     }
     setUploading(false)
@@ -166,10 +163,15 @@ export default function PostForm({ post }: PostFormProps) {
   }
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 280px', gap: '2rem', alignItems: 'flex-start' }}>
-
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 280px',
+        gap: '2rem',
+        alignItems: 'flex-start',
+      }}
+    >
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', minWidth: 0 }}>
-
         <div>
           <label style={labelStyle}>Título *</label>
           <input
@@ -178,24 +180,42 @@ export default function PostForm({ post }: PostFormProps) {
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Título do post"
             style={{ ...inputStyle, fontSize: '1.2rem', fontFamily: 'var(--font-body)' }}
-            onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--emerald)' }}
-            onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--border)' }}
+            onFocus={(e) => {
+              e.currentTarget.style.borderColor = 'var(--emerald)'
+            }}
+            onBlur={(e) => {
+              e.currentTarget.style.borderColor = 'var(--border)'
+            }}
           />
         </div>
 
         <div>
           <label style={labelStyle}>Slug (URL)</label>
           <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-            <span style={{ fontFamily: 'var(--font-ui)', fontSize: '0.82rem', color: 'var(--text-faint)', whiteSpace: 'nowrap' }}>
+            <span
+              style={{
+                fontFamily: 'var(--font-ui)',
+                fontSize: '0.82rem',
+                color: 'var(--text-faint)',
+                whiteSpace: 'nowrap',
+              }}
+            >
               /post/
             </span>
             <input
               type="text"
               value={slug}
-              onChange={(e) => { setSlug(e.target.value); setSlugManual(true) }}
+              onChange={(e) => {
+                setSlug(e.target.value)
+                setSlugManual(true)
+              }}
               style={inputStyle}
-              onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--emerald)' }}
-              onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--border)' }}
+              onFocus={(e) => {
+                e.currentTarget.style.borderColor = 'var(--emerald)'
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.borderColor = 'var(--border)'
+              }}
             />
           </div>
         </div>
@@ -213,14 +233,25 @@ export default function PostForm({ post }: PostFormProps) {
             placeholder="Deixe em branco para gerar automaticamente do conteúdo"
             rows={3}
             style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.6 }}
-            onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--emerald)' }}
-            onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--border)' }}
+            onFocus={(e) => {
+              e.currentTarget.style.borderColor = 'var(--emerald)'
+            }}
+            onBlur={(e) => {
+              e.currentTarget.style.borderColor = 'var(--border)'
+            }}
           />
         </div>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', position: 'sticky', top: '2rem' }}>
-
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1.25rem',
+          position: 'sticky',
+          top: '2rem',
+        }}
+      >
         <div
           style={{
             backgroundColor: 'var(--bg-surface)',
@@ -233,10 +264,28 @@ export default function PostForm({ post }: PostFormProps) {
           }}
         >
           {saveStatus === 'saved' && (
-            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '0.75rem', color: 'var(--emerald-light)', textAlign: 'center' }}>✓ Salvo</p>
+            <p
+              style={{
+                fontFamily: 'var(--font-ui)',
+                fontSize: '0.75rem',
+                color: 'var(--emerald-light)',
+                textAlign: 'center',
+              }}
+            >
+              ✓ Salvo
+            </p>
           )}
           {saveStatus === 'error' && (
-            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '0.75rem', color: '#e57373', textAlign: 'center' }}>Erro ao salvar</p>
+            <p
+              style={{
+                fontFamily: 'var(--font-ui)',
+                fontSize: '0.75rem',
+                color: '#e57373',
+                textAlign: 'center',
+              }}
+            >
+              Erro ao salvar
+            </p>
           )}
 
           <button
@@ -295,7 +344,16 @@ export default function PostForm({ post }: PostFormProps) {
               type="button"
               onClick={() => handleSave(false)}
               disabled={saving}
-              style={{ width: '100%', background: 'none', border: 'none', fontFamily: 'var(--font-ui)', fontSize: '0.72rem', color: 'var(--text-faint)', cursor: 'pointer', padding: '0.25rem' }}
+              style={{
+                width: '100%',
+                background: 'none',
+                border: 'none',
+                fontFamily: 'var(--font-ui)',
+                fontSize: '0.72rem',
+                color: 'var(--text-faint)',
+                cursor: 'pointer',
+                padding: '0.25rem',
+              }}
             >
               Voltar para rascunho
             </button>
@@ -314,7 +372,14 @@ export default function PostForm({ post }: PostFormProps) {
 
           {coverImage ? (
             <div style={{ position: 'relative' }}>
-              <div style={{ position: 'relative', height: '140px', borderRadius: 'var(--radius-sm)', overflow: 'hidden' }}>
+              <div
+                style={{
+                  position: 'relative',
+                  height: '140px',
+                  borderRadius: 'var(--radius-sm)',
+                  overflow: 'hidden',
+                }}
+              >
                 <Image src={coverImage} alt="Capa" fill style={{ objectFit: 'cover' }} />
               </div>
               <button
@@ -354,15 +419,28 @@ export default function PostForm({ post }: PostFormProps) {
                 backgroundColor: 'var(--bg-surface-2)',
               }}
             >
-              {uploading ? <Loader2 size={20} color="var(--text-faint)" /> : (
+              {uploading ? (
+                <Loader2 size={20} color="var(--text-faint)" />
+              ) : (
                 <>
                   <ImageIcon size={20} color="var(--text-faint)" />
-                  <span style={{ fontFamily: 'var(--font-ui)', fontSize: '0.75rem', color: 'var(--text-faint)' }}>
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-ui)',
+                      fontSize: '0.75rem',
+                      color: 'var(--text-faint)',
+                    }}
+                  >
                     Clique para enviar
                   </span>
                 </>
               )}
-              <input type="file" accept="image/*" onChange={handleUploadCover} style={{ display: 'none' }} />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleUploadCover}
+                style={{ display: 'none' }}
+              />
             </label>
           )}
         </div>
@@ -382,8 +460,13 @@ export default function PostForm({ post }: PostFormProps) {
                 key={m.value}
                 type="button"
                 onClick={() => {
-                  if (mood === m.value) { setMood(''); setMoodEmoji('') }
-                  else { setMood(m.label); setMoodEmoji(m.emoji) }
+                  if (mood === m.value) {
+                    setMood('')
+                    setMoodEmoji('')
+                  } else {
+                    setMood(m.label)
+                    setMoodEmoji(m.emoji)
+                  }
                 }}
                 title={m.label}
                 style={{
@@ -401,7 +484,14 @@ export default function PostForm({ post }: PostFormProps) {
             ))}
           </div>
           {mood && (
-            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '0.75rem', color: 'var(--text-faint)', marginTop: '0.5rem' }}>
+            <p
+              style={{
+                fontFamily: 'var(--font-ui)',
+                fontSize: '0.75rem',
+                color: 'var(--text-faint)',
+                marginTop: '0.5rem',
+              }}
+            >
               {moodEmoji} {mood}
             </p>
           )}
@@ -422,10 +512,21 @@ export default function PostForm({ post }: PostFormProps) {
             onChange={(e) => setTags(e.target.value)}
             placeholder="fantasia, escrita, vida"
             style={inputStyle}
-            onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--emerald)' }}
-            onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--border)' }}
+            onFocus={(e) => {
+              e.currentTarget.style.borderColor = 'var(--emerald)'
+            }}
+            onBlur={(e) => {
+              e.currentTarget.style.borderColor = 'var(--border)'
+            }}
           />
-          <p style={{ fontFamily: 'var(--font-ui)', fontSize: '0.68rem', color: 'var(--text-faint)', marginTop: '0.4rem' }}>
+          <p
+            style={{
+              fontFamily: 'var(--font-ui)',
+              fontSize: '0.68rem',
+              color: 'var(--text-faint)',
+              marginTop: '0.4rem',
+            }}
+          >
             Separe por vírgulas
           </p>
         </div>
@@ -442,14 +543,22 @@ export default function PostForm({ post }: PostFormProps) {
           }}
         >
           <label style={{ ...labelStyle, marginBottom: 0 }}>Opções</label>
-          <label style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', cursor: 'pointer' }}>
+          <label
+            style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', cursor: 'pointer' }}
+          >
             <input
               type="checkbox"
               checked={isFeatured}
               onChange={(e) => setIsFeatured(e.target.checked)}
               style={{ accentColor: 'var(--gold)', width: '14px', height: '14px' }}
             />
-            <span style={{ fontFamily: 'var(--font-ui)', fontSize: '0.82rem', color: 'var(--text-muted)' }}>
+            <span
+              style={{
+                fontFamily: 'var(--font-ui)',
+                fontSize: '0.82rem',
+                color: 'var(--text-muted)',
+              }}
+            >
               Fixar no topo (destaque)
             </span>
           </label>

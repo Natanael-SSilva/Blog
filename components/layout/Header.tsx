@@ -20,22 +20,19 @@ export default function Header() {
         position: 'sticky',
         top: 0,
         zIndex: 100,
-        backgroundColor: scrolled
-          ? 'rgba(8, 14, 10, 0.95)'
-          : 'var(--bg)',
+        backgroundColor: scrolled ? 'rgba(8, 14, 10, 0.95)' : 'var(--bg)',
         backdropFilter: scrolled ? 'blur(12px)' : 'none',
         borderBottom: '1px solid var(--border)',
         transition: 'all 0.3s ease',
-        boxShadow: scrolled
-          ? '0 4px 32px rgba(0,0,0,0.5)'
-          : 'none',
+        boxShadow: scrolled ? '0 4px 32px rgba(0,0,0,0.5)' : 'none',
       }}
     >
       {/* Linha dourada decorativa no topo */}
       <div
         style={{
           height: '2px',
-          background: 'linear-gradient(to right, transparent, var(--gold-deep), var(--gold), var(--gold-deep), transparent)',
+          background:
+            'linear-gradient(to right, transparent, var(--gold-deep), var(--gold), var(--gold-deep), transparent)',
         }}
       />
 
@@ -180,9 +177,15 @@ export default function Header() {
             backgroundColor: 'var(--bg-surface)',
           }}
         >
-          <MobileNavLink href="/" onClick={() => setMenuOpen(false)}>Início</MobileNavLink>
-          <MobileNavLink href="/busca" onClick={() => setMenuOpen(false)}>Busca</MobileNavLink>
-          <MobileNavLink href="/admin/posts" onClick={() => setMenuOpen(false)}>Admin</MobileNavLink>
+          <MobileNavLink href="/" onClick={() => setMenuOpen(false)}>
+            Início
+          </MobileNavLink>
+          <MobileNavLink href="/busca" onClick={() => setMenuOpen(false)}>
+            Busca
+          </MobileNavLink>
+          <MobileNavLink href="/admin/posts" onClick={() => setMenuOpen(false)}>
+            Admin
+          </MobileNavLink>
         </div>
       )}
 
@@ -200,13 +203,7 @@ export default function Header() {
   )
 }
 
-function NavLink({
-  href,
-  children,
-}: {
-  href: string
-  children: React.ReactNode
-}) {
+function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <Link
       href={href}

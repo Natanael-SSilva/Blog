@@ -59,7 +59,8 @@ export default function FeaturedPost({ post }: { post: Post }) {
       <div
         style={{
           height: '3px',
-          background: 'linear-gradient(to right, transparent, var(--gold-deep), var(--gold), var(--gold-deep), transparent)',
+          background:
+            'linear-gradient(to right, transparent, var(--gold-deep), var(--gold), var(--gold-deep), transparent)',
         }}
       />
 
@@ -79,7 +80,8 @@ export default function FeaturedPost({ post }: { post: Post }) {
                 style={{
                   position: 'absolute',
                   inset: 0,
-                  background: 'linear-gradient(to top, var(--bg-surface) 0%, rgba(8,14,10,0.3) 60%, transparent 100%)',
+                  background:
+                    'linear-gradient(to top, var(--bg-surface) 0%, rgba(8,14,10,0.3) 60%, transparent 100%)',
                 }}
               />
             </div>

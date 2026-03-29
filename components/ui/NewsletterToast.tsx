@@ -5,11 +5,14 @@ import { useSearchParams } from 'next/navigation'
 import { CheckCircle2, XCircle, X } from 'lucide-react'
 
 const MESSAGES: Record<string, { text: string; type: 'success' | 'info' | 'error' }> = {
-  confirmed:    { text: 'Inscrição confirmada! Você receberá os próximos posts por email.', type: 'success' },
-  already:      { text: 'Este email já estava confirmado.', type: 'info' },
+  confirmed: {
+    text: 'Inscrição confirmada! Você receberá os próximos posts por email.',
+    type: 'success',
+  },
+  already: { text: 'Este email já estava confirmado.', type: 'info' },
   unsubscribed: { text: 'Inscrição cancelada. Você não receberá mais emails.', type: 'info' },
-  invalid:      { text: 'Link inválido ou expirado.', type: 'error' },
-  error:        { text: 'Algo deu errado. Tente novamente.', type: 'error' },
+  invalid: { text: 'Link inválido ou expirado.', type: 'error' },
+  error: { text: 'Algo deu errado. Tente novamente.', type: 'error' },
 }
 
 export default function NewsletterToast() {
@@ -66,13 +69,30 @@ export default function NewsletterToast() {
         <CheckCircle2 size={18} color="var(--text-faint)" style={{ flexShrink: 0 }} />
       )}
 
-      <p style={{ fontFamily: 'var(--font-ui)', fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.5, margin: 0, flex: 1 }}>
+      <p
+        style={{
+          fontFamily: 'var(--font-ui)',
+          fontSize: '0.85rem',
+          color: 'var(--text-muted)',
+          lineHeight: 1.5,
+          margin: 0,
+          flex: 1,
+        }}
+      >
         {msg.text}
       </p>
 
       <button
         onClick={() => setVisible(false)}
-        style={{ background: 'none', border: 'none', color: 'var(--text-faint)', cursor: 'pointer', padding: '0.15rem', display: 'flex', flexShrink: 0 }}
+        style={{
+          background: 'none',
+          border: 'none',
+          color: 'var(--text-faint)',
+          cursor: 'pointer',
+          padding: '0.15rem',
+          display: 'flex',
+          flexShrink: 0,
+        }}
         aria-label="Fechar"
       >
         <X size={14} />

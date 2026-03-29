@@ -52,9 +52,18 @@ export default async function BuscaPage({ searchParams }: BuscaPageProps) {
   return (
     <div>
       <div style={{ marginBottom: '2rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
+        <div
+          style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}
+        >
           <Search size={18} color="var(--emerald-light)" />
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', color: 'var(--text)', fontWeight: 600 }}>
+          <h1
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '1.6rem',
+              color: 'var(--text)',
+              fontWeight: 600,
+            }}
+          >
             Busca
           </h1>
         </div>
@@ -106,7 +115,14 @@ export default async function BuscaPage({ searchParams }: BuscaPageProps) {
 
       {query && (
         <div>
-          <p style={{ fontFamily: 'var(--font-ui)', fontSize: '0.82rem', color: 'var(--text-faint)', marginBottom: '1.5rem' }}>
+          <p
+            style={{
+              fontFamily: 'var(--font-ui)',
+              fontSize: '0.82rem',
+              color: 'var(--text-faint)',
+              marginBottom: '1.5rem',
+            }}
+          >
             {posts.length === 0
               ? `Nenhum resultado para "${query}"`
               : `${posts.length} resultado${posts.length > 1 ? 's' : ''} para "${query}"`}
@@ -122,7 +138,16 @@ export default async function BuscaPage({ searchParams }: BuscaPageProps) {
       )}
 
       {!query && (
-        <div style={{ textAlign: 'center', padding: '4rem 2rem', color: 'var(--text-faint)', fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: '1.1rem' }}>
+        <div
+          style={{
+            textAlign: 'center',
+            padding: '4rem 2rem',
+            color: 'var(--text-faint)',
+            fontFamily: 'var(--font-body)',
+            fontStyle: 'italic',
+            fontSize: '1.1rem',
+          }}
+        >
           Digite algo para começar a busca…
         </div>
       )}

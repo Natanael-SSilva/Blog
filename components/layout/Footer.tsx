@@ -61,8 +61,12 @@ export default function Footer() {
         </div>
 
         <nav style={{ display: 'flex', gap: '1.5rem' }}>
-          <Link href="/" className="footer-link">Início</Link>
-          <Link href="/busca" className="footer-link">Busca</Link>
+          <Link href="/" className="footer-link">
+            Início
+          </Link>
+          <Link href="/busca" className="footer-link">
+            Busca
+          </Link>
         </nav>
 
         <p

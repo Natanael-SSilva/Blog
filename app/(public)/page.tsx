@@ -49,19 +49,14 @@ export default async function HomePage({ searchParams }: HomeProps) {
   const { page: pageParam } = await searchParams
   const page = Number(pageParam) || 1
 
-  const [featuredPost, { posts, total }] = await Promise.all([
-    getFeaturedPost(),
-    getPosts(page),
-  ])
+  const [featuredPost, { posts, total }] = await Promise.all([getFeaturedPost(), getPosts(page)])
 
   const totalPages = Math.ceil(total / PER_PAGE)
 
   return (
     <div>
       {/* Post em destaque */}
-      {featuredPost && page === 1 && (
-        <FeaturedPost post={featuredPost} />
-      )}
+      {featuredPost && page === 1 && <FeaturedPost post={featuredPost} />}
 
       {/* Divisor ornamental */}
       {featuredPost && page === 1 && (

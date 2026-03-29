@@ -98,7 +98,9 @@ export default function NewsletterSendButton({ posts, confirmedCount }: Props) {
           }}
         >
           {sending ? <Loader2 size={14} /> : <Send size={14} />}
-          {sending ? 'Enviando…' : `Enviar para ${confirmedCount} assinante${confirmedCount > 1 ? 's' : ''}`}
+          {sending
+            ? 'Enviando…'
+            : `Enviar para ${confirmedCount} assinante${confirmedCount > 1 ? 's' : ''}`}
         </button>
       </div>
 
@@ -113,7 +115,8 @@ export default function NewsletterSendButton({ posts, confirmedCount }: Props) {
             borderRadius: 'var(--radius-sm)',
             fontFamily: 'var(--font-ui)',
             fontSize: '0.82rem',
-            backgroundColor: result.type === 'success' ? 'rgba(64,145,108,0.1)' : 'rgba(229,115,115,0.08)',
+            backgroundColor:
+              result.type === 'success' ? 'rgba(64,145,108,0.1)' : 'rgba(229,115,115,0.08)',
             border: `1px solid ${result.type === 'success' ? 'var(--emerald-deep)' : 'rgba(229,115,115,0.2)'}`,
             color: result.type === 'success' ? 'var(--emerald-light)' : '#e57373',
           }}

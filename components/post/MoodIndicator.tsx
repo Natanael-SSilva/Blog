@@ -19,9 +19,7 @@ export default function MoodIndicator({ mood, emoji }: MoodIndicatorProps) {
       }}
     >
       <span style={{ fontSize: '0.9rem' }}>{emoji}</span>
-      <span style={{ color: 'var(--text-faint)', letterSpacing: '0.05em' }}>
-        Humor atual:
-      </span>
+      <span style={{ color: 'var(--text-faint)', letterSpacing: '0.05em' }}>Humor atual:</span>
       <span style={{ color: 'var(--text-muted)', fontWeight: 500 }}>{mood}</span>
     </div>
   )

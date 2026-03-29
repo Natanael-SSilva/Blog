@@ -11,11 +11,7 @@ export default async function EditarPostPage({ params }: EditarPostPageProps) {
   const { id } = await params
   const supabase = await createClient()
 
-  const { data } = await supabase
-    .from('posts')
-    .select('*')
-    .eq('id', id)
-    .single()
+  const { data } = await supabase.from('posts').select('*').eq('id', id).single()
 
   if (!data) notFound()
 
