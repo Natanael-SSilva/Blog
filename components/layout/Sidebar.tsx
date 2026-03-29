@@ -73,6 +73,25 @@ export default async function Sidebar() {
         </SidebarSection>
       )}
 
+      {/* Link ver todas as tags */}
+      {tags.length > 0 && (
+        <a
+          href="/tags"
+          style={{
+            fontFamily: 'var(--font-ui)',
+            fontSize: '0.72rem',
+            letterSpacing: '0.08em',
+            color: 'var(--text-faint)',
+            textDecoration: 'none',
+            textAlign: 'center',
+            display: 'block',
+            transition: 'color var(--transition)',
+          }}
+        >
+          Ver todas →
+        </a>
+      )}
+
       {/* Divisor ornamental */}
       <div className="ornament-divider">
         <span

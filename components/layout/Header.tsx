@@ -84,7 +84,7 @@ export default function Header() {
                 display: 'block',
               }}
             >
-              {process.env.NEXT_PUBLIC_SITE_NAME || 'É um blog'}
+              {process.env.NEXT_PUBLIC_SITE_NAME || 'Meu Blog'}
             </span>
             <span
               style={{
@@ -97,7 +97,7 @@ export default function Header() {
                 marginTop: '2px',
               }}
             >
-              Tem de Tudo
+              Crônicas & Criações
             </span>
           </div>
         </Link>
@@ -112,6 +112,7 @@ export default function Header() {
           className="hidden-mobile"
         >
           <NavLink href="/">Início</NavLink>
+          <NavLink href="/tags">Tags</NavLink>
           <NavLink href="/busca">Busca</NavLink>
           <span
             style={{
@@ -179,6 +180,9 @@ export default function Header() {
         >
           <MobileNavLink href="/" onClick={() => setMenuOpen(false)}>
             Início
+          </MobileNavLink>
+          <MobileNavLink href="/tags" onClick={() => setMenuOpen(false)}>
+            Tags
           </MobileNavLink>
           <MobileNavLink href="/busca" onClick={() => setMenuOpen(false)}>
             Busca

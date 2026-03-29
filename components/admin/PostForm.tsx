@@ -6,7 +6,8 @@ import { createClient } from '@/lib/supabase/client'
 import { Post, MOODS } from '@/types'
 import { generateSlug, generateExcerpt } from '@/lib/utils'
 import TiptapEditor from './TiptapEditor'
-import { Save, Eye, X, Loader2, ImageIcon } from 'lucide-react'
+import { Save, Eye, X, Loader2, ImageIcon, ExternalLink } from 'lucide-react'
+import Link from 'next/link'
 import Image from 'next/image'
 
 interface PostFormProps {
@@ -34,30 +35,25 @@ export default function PostForm({ post }: PostFormProps) {
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saved' | 'error'>('idle')
   const [autoSaveTimer, setAutoSaveTimer] = useState<NodeJS.Timeout | null>(null)
 
+  // Auto-gerar slug a partir do título
   useEffect(() => {
     if (!slugManual && title) {
       setSlug(generateSlug(title))
     }
   }, [title, slugManual])
 
-  const autoSave = useCallback(
-    async () => {
-      if (!isEditing || published) return
-      await handleSave(false, true)
-    },
-    // handleSave é recriada a cada render mas não deve entrar nas deps
-    // pois causaria loop infinito no auto-save
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [content, title, excerpt, tags]
-  )
+  // Auto-save a cada 30s (apenas rascunhos)
+  const autoSave = useCallback(async () => {
+    if (!isEditing || published) return
+    await handleSave(false, true)
+  }, [content, title, excerpt, tags]) // eslint-disable-line
 
   useEffect(() => {
     if (autoSaveTimer) clearTimeout(autoSaveTimer)
     const timer = setTimeout(autoSave, 30000)
     setAutoSaveTimer(timer)
     return () => clearTimeout(timer)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [content, title])
+  }, [content, title]) // eslint-disable-line
 
   async function handleUploadCover(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
@@ -171,7 +167,9 @@ export default function PostForm({ post }: PostFormProps) {
         alignItems: 'flex-start',
       }}
     >
+      {/* Coluna principal */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', minWidth: 0 }}>
+        {/* Título */}
         <div>
           <label style={labelStyle}>Título *</label>
           <input
@@ -189,6 +187,7 @@ export default function PostForm({ post }: PostFormProps) {
           />
         </div>
 
+        {/* Slug */}
         <div>
           <label style={labelStyle}>Slug (URL)</label>
           <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
@@ -220,11 +219,13 @@ export default function PostForm({ post }: PostFormProps) {
           </div>
         </div>
 
+        {/* Editor */}
         <div>
           <label style={labelStyle}>Conteúdo *</label>
           <TiptapEditor content={content} onChange={setContent} placeholder="Escreva aqui…" />
         </div>
 
+        {/* Excerpt */}
         <div>
           <label style={labelStyle}>Resumo (excerpt)</label>
           <textarea
@@ -243,6 +244,7 @@ export default function PostForm({ post }: PostFormProps) {
         </div>
       </div>
 
+      {/* Coluna lateral */}
       <div
         style={{
           display: 'flex',
@@ -252,6 +254,7 @@ export default function PostForm({ post }: PostFormProps) {
           top: '2rem',
         }}
       >
+        {/* Ações */}
         <div
           style={{
             backgroundColor: 'var(--bg-surface)',
@@ -288,6 +291,7 @@ export default function PostForm({ post }: PostFormProps) {
             </p>
           )}
 
+          {/* Rascunho */}
           <button
             type="button"
             onClick={() => handleSave(false)}
@@ -307,12 +311,14 @@ export default function PostForm({ post }: PostFormProps) {
               alignItems: 'center',
               justifyContent: 'center',
               gap: '0.5rem',
+              transition: 'all var(--transition)',
             }}
           >
             {saving ? <Loader2 size={13} /> : <Save size={13} />}
             Salvar rascunho
           </button>
 
+          {/* Publicar */}
           <button
             type="button"
             onClick={() => handleSave(true)}
@@ -333,12 +339,14 @@ export default function PostForm({ post }: PostFormProps) {
               justifyContent: 'center',
               gap: '0.5rem',
               fontWeight: 600,
+              transition: 'all var(--transition)',
             }}
           >
             {saving ? <Loader2 size={13} /> : <Eye size={13} />}
             {published ? '✓ Publicado' : 'Publicar'}
           </button>
 
+          {/* Despublicar se publicado */}
           {published && (
             <button
               type="button"
@@ -358,8 +366,34 @@ export default function PostForm({ post }: PostFormProps) {
               Voltar para rascunho
             </button>
           )}
+
+          {/* Preview — só aparece em posts já salvos */}
+          {isEditing && (
+            <Link
+              href={`/admin/posts/${post.id}/preview`}
+              target="_blank"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.4rem',
+                fontFamily: 'var(--font-ui)',
+                fontSize: '0.75rem',
+                color: 'var(--text-faint)',
+                textDecoration: 'none',
+                padding: '0.4rem',
+                borderRadius: 'var(--radius-sm)',
+                border: '1px solid var(--border)',
+                transition: 'all var(--transition)',
+              }}
+            >
+              <ExternalLink size={12} />
+              Abrir preview
+            </Link>
+          )}
         </div>
 
+        {/* Imagem de capa */}
         <div
           style={{
             backgroundColor: 'var(--bg-surface)',
@@ -416,6 +450,7 @@ export default function PostForm({ post }: PostFormProps) {
                 border: '2px dashed var(--border)',
                 borderRadius: 'var(--radius-sm)',
                 cursor: 'pointer',
+                transition: 'all var(--transition)',
                 backgroundColor: 'var(--bg-surface-2)',
               }}
             >
@@ -445,6 +480,7 @@ export default function PostForm({ post }: PostFormProps) {
           )}
         </div>
 
+        {/* Mood */}
         <div
           style={{
             backgroundColor: 'var(--bg-surface)',
@@ -476,6 +512,7 @@ export default function PostForm({ post }: PostFormProps) {
                   padding: '0.3rem 0.5rem',
                   cursor: 'pointer',
                   fontSize: '1rem',
+                  transition: 'all var(--transition)',
                   backgroundColor: mood === m.value ? 'var(--emerald-deep)' : 'var(--bg-surface-2)',
                 }}
               >
@@ -497,6 +534,7 @@ export default function PostForm({ post }: PostFormProps) {
           )}
         </div>
 
+        {/* Tags */}
         <div
           style={{
             backgroundColor: 'var(--bg-surface)',
@@ -531,6 +569,7 @@ export default function PostForm({ post }: PostFormProps) {
           </p>
         </div>
 
+        {/* Opções */}
         <div
           style={{
             backgroundColor: 'var(--bg-surface)',
@@ -543,6 +582,7 @@ export default function PostForm({ post }: PostFormProps) {
           }}
         >
           <label style={{ ...labelStyle, marginBottom: 0 }}>Opções</label>
+
           <label
             style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', cursor: 'pointer' }}
           >
@@ -565,6 +605,7 @@ export default function PostForm({ post }: PostFormProps) {
         </div>
       </div>
 
+      {/* Responsividade */}
       <style>{`
         @media (max-width: 900px) {
           div[style*="grid-template-columns: 1fr 280px"] {
