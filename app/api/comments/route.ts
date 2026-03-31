@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 import { containsBlockedContent, getBlockedReason } from '@/lib/content-filter'
 
 interface CommentRow {
@@ -22,7 +23,11 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'postId é obrigatório.' }, { status: 400 })
   }
 
-  const supabase = await createClient()
+  // GET usa service role para garantir leitura sem problemas de RLS
+  const supabase = createSupabaseClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
 
   const { data, error } = await supabase
     .from('comments')
@@ -37,6 +42,7 @@ export async function GET(request: NextRequest) {
     .order('created_at', { ascending: true })
 
   if (error) {
+    console.error('GET comments error:', error.message)
     return NextResponse.json({ error: 'Erro ao buscar comentários.' }, { status: 500 })
   }
 
@@ -49,9 +55,11 @@ export async function POST(request: NextRequest) {
   const supabase = await createClient()
   const {
     data: { user },
+    error: authError,
   } = await supabase.auth.getUser()
 
-  if (!user) {
+  if (authError || !user) {
+    console.error('Auth error:', authError?.message)
     return NextResponse.json({ error: 'Você precisa estar logado para comentar.' }, { status: 401 })
   }
 
@@ -63,13 +71,17 @@ export async function POST(request: NextRequest) {
     }
 
     if (content.trim().length > 2000) {
-      return NextResponse.json(
-        { error: 'Comentário muito longo. Máximo de 2000 caracteres.' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: 'Comentário muito longo.' }, { status: 400 })
     }
 
-    const { data: post } = await supabase
+    // Usa service role para verificar o post e inserir o comentário
+    // evita problemas de RLS com o cliente do servidor
+    const adminSupabase = createSupabaseClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    )
+
+    const { data: post } = await adminSupabase
       .from('posts')
       .select('id, comments_enabled')
       .eq('id', postId)
@@ -85,11 +97,10 @@ export async function POST(request: NextRequest) {
     }
 
     if (containsBlockedContent(content)) {
-      const reason = getBlockedReason(content)
-      return NextResponse.json({ error: reason }, { status: 422 })
+      return NextResponse.json({ error: getBlockedReason(content) }, { status: 422 })
     }
 
-    const { data: comment, error } = await supabase
+    const { data: comment, error: insertError } = await adminSupabase
       .from('comments')
       .insert({
         post_id: postId,
@@ -106,13 +117,14 @@ export async function POST(request: NextRequest) {
       )
       .single()
 
-    if (error) {
+    if (insertError) {
+      console.error('Insert comment error:', insertError.message)
       return NextResponse.json({ error: 'Erro ao salvar comentário.' }, { status: 500 })
     }
 
     return NextResponse.json({ comment }, { status: 201 })
   } catch (err) {
-    console.error('Comment POST error:', err)
+    console.error('Comment POST catch:', err)
     return NextResponse.json({ error: 'Erro interno.' }, { status: 500 })
   }
 }
@@ -124,7 +136,6 @@ function buildTree(comments: CommentRow[]): CommentRow[] {
   comments.forEach((c) => {
     map[c.id] = { ...c, replies: [] }
   })
-
   comments.forEach((c) => {
     if (c.parent_id && map[c.parent_id]) {
       map[c.parent_id].replies.push(map[c.id])

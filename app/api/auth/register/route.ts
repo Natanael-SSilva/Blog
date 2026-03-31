@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createAdminClient } from '@/lib/supabase/server'
+import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 
 export async function POST(request: NextRequest) {
   try {
@@ -20,12 +20,15 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const supabase = createAdminClient()
+    const supabase = createSupabaseClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    )
 
     const { data, error } = await supabase.auth.admin.createUser({
       email,
       password,
-      email_confirm: true, // confirma automaticamente sem email
+      email_confirm: true,
       user_metadata: { name: name.trim() },
     })
 
@@ -33,6 +36,7 @@ export async function POST(request: NextRequest) {
       if (error.message.includes('already registered')) {
         return NextResponse.json({ error: 'Este email já está cadastrado.' }, { status: 409 })
       }
+      console.error('Register error:', error.message)
       return NextResponse.json({ error: 'Erro ao criar conta. Tente novamente.' }, { status: 500 })
     }
 
@@ -41,7 +45,7 @@ export async function POST(request: NextRequest) {
       userId: data.user.id,
     })
   } catch (err) {
-    console.error('Register error:', err)
+    console.error('Register catch error:', err)
     return NextResponse.json({ error: 'Erro interno.' }, { status: 500 })
   }
 }
