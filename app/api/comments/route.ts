@@ -40,7 +40,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Erro ao buscar comentários.' }, { status: 500 })
   }
 
-  const tree = buildTree((data as CommentRow[]) || [])
+  const tree = buildTree((data as unknown as CommentRow[]) || [])
   return NextResponse.json({ comments: tree })
 }
 
