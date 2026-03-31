@@ -10,6 +10,7 @@ import PostNav from '@/components/post/PostNav'
 import PostTags from '@/components/post/PostTags'
 import PostSchema from '@/components/post/PostSchema'
 import { formatDate, getReadingTime } from '@/lib/utils'
+import CommentsSection from '@/components/comments/CommentsSection'
 import { Calendar, Clock } from 'lucide-react'
 
 // Revalida a página a cada 10 minutos
@@ -24,7 +25,7 @@ async function getPost(slug: string): Promise<Post | null> {
   const supabase = await createClient()
   const { data } = await supabase
     .from('posts')
-    .select('*')
+    .select('*, comments_enabled')
     .eq('slug', slug)
     .eq('published', true)
     .single()
@@ -193,6 +194,9 @@ export default async function PostPage({ params }: PostPageProps) {
       <div style={{ marginTop: '3rem' }}>
         <NewsletterForm />
       </div>
+
+      {/* Sistema de comentários */}
+      <CommentsSection postId={post.id} commentsEnabled={post.comments_enabled ?? true} />
     </article>
   )
 }

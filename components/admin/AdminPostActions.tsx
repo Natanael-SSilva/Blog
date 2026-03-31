@@ -4,7 +4,17 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Post } from '@/types'
-import { Pencil, Trash2, Eye, EyeOff, Pin, PinOff, Loader2 } from 'lucide-react'
+import {
+  Pencil,
+  Trash2,
+  Eye,
+  EyeOff,
+  Pin,
+  PinOff,
+  Loader2,
+  MessageSquare,
+  MessageSquareOff,
+} from 'lucide-react'
 import Link from 'next/link'
 
 export default function AdminPostActions({ post }: { post: Post }) {
@@ -30,6 +40,13 @@ export default function AdminPostActions({ post }: { post: Post }) {
 
     await supabase.from('posts').update({ is_featured: !post.is_featured }).eq('id', post.id)
 
+    router.refresh()
+    setLoading(null)
+  }
+
+  async function toggleComments() {
+    setLoading('comments')
+    await fetch(`/api/posts/${post.id}/comments-toggle`, { method: 'PATCH' })
     router.refresh()
     setLoading(null)
   }
@@ -96,6 +113,26 @@ export default function AdminPostActions({ post }: { post: Post }) {
           <PinOff size={13} />
         ) : (
           <Pin size={13} color="var(--gold)" />
+        )}
+      </button>
+
+      {/* Comentários */}
+      <button
+        onClick={toggleComments}
+        title={
+          (post as { comments_enabled?: boolean }).comments_enabled !== false
+            ? 'Desativar comentários'
+            : 'Ativar comentários'
+        }
+        style={btnStyle}
+        disabled={loading === 'comments'}
+      >
+        {loading === 'comments' ? (
+          <Loader2 size={13} />
+        ) : (post as { comments_enabled?: boolean }).comments_enabled !== false ? (
+          <MessageSquare size={13} color="var(--emerald-light)" />
+        ) : (
+          <MessageSquareOff size={13} color="var(--text-faint)" />
         )}
       </button>
 
