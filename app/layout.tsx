@@ -25,8 +25,6 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    // Isso injeta <link rel="alternate" type="application/rss+xml"> no <head>
-    // Browsers e leitores de RSS detectam automaticamente
     types: {
       'application/rss+xml': `${siteUrl}/feed.xml`,
     },

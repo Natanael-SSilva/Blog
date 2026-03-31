@@ -84,7 +84,7 @@ export default function Header() {
                 display: 'block',
               }}
             >
-              {process.env.NEXT_PUBLIC_SITE_NAME || 'Meu Blog'}
+              {process.env.NEXT_PUBLIC_SITE_NAME || 'É um Blog'}
             </span>
             <span
               style={{
@@ -97,7 +97,7 @@ export default function Header() {
                 marginTop: '2px',
               }}
             >
-              Crônicas & Criações
+              Resenhas e Opiniões
             </span>
           </div>
         </Link>
