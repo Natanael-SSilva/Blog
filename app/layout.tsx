@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'Meu Blog'
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'É um Blog'
 const siteDescription = process.env.NEXT_PUBLIC_SITE_DESCRIPTION || 'Blog pessoal e criativo'
 
 export const metadata: Metadata = {
