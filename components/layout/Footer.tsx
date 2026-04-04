@@ -2,7 +2,7 @@ import { Feather } from 'lucide-react'
 
 export default function Footer() {
   const year = new Date().getFullYear()
-  const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'Meu Blog'
+  const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'É um Blog'
 
   const socials = [
     {
@@ -75,24 +75,15 @@ export default function Footer() {
       }}
     >
       <style>{`
-        .footer-social {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          border: 1px solid var(--border);
+        .footer-link {
+          font-family: var(--font-ui);
+          font-size: 0.78rem;
+          letter-spacing: 0.08em;
           color: var(--text-faint);
           text-decoration: none;
-          transition: all var(--transition);
-          background: transparent;
+          transition: color var(--transition);
         }
-        .footer-social:hover {
-          color: var(--gold-light);
-          border-color: var(--gold-deep);
-          background-color: var(--bg-surface-2);
-        }
+        .footer-link:hover { color: var(--emerald-light); }
       `}</style>
 
       <div
@@ -111,7 +102,7 @@ export default function Footer() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '1.5rem',
+          gap: '1.25rem',
           textAlign: 'center',
         }}
       >
@@ -146,7 +137,6 @@ export default function Footer() {
             </a>
           ))}
         </div>
-
         {/* Copyright */}
         <p
           style={{
@@ -156,7 +146,10 @@ export default function Footer() {
             letterSpacing: '0.05em',
           }}
         >
-          © {year} {siteName}. Todos os direitos reservados.
+          © {year} {siteName}. ·{' '}
+          <a href="/privacidade" style={{ color: 'var(--text-faint)', textDecoration: 'none' }}>
+            Privacidade
+          </a>
         </p>
       </div>
     </footer>
